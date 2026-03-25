@@ -1,1 +1,1 @@
-{"source_type": "government_website", "source_access_type": "website_page_scrape", "source_client_key": {"how_to_access": "Access via website_page_scrape. URL: https://www.nyc.gov/site/nypd/stats/crime-stats.page\nDescription: NYPD Crime Statistics"}, "value_score": 9}
+{"source_type": "government_website", "source_access_type": "website_page_scrape", "source_client_key": {"how_to_access": "Access via website_page_scrape. URL: https://maps.nyc.gov/nypdprecincts/\nDescription: NYPD Precinct Maps"}, "value_score": 9}
