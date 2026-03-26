@@ -9,9 +9,9 @@ from rss_scraper import RSSFeedScraper
 
 def main():
     scraper = RSSFeedScraper(
-        source_path=Path('rss_brooklynpaper_kensington_2026-03-26T14-10-24')
+        source_path=Path('.')
     )
-    scraper.run()
+    scraper.scrape(start_date=None, end_date=None)
 
 if __name__ == '__main__':
     main()
