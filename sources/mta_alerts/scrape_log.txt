@@ -1,2 +1,16 @@
 # MTA Alerts Scrape Log
 # Format: [timestamp] Scrape started at X, ended at Y, found Z alerts
+2026-03-26 18:59:27,754 INFO: Starting mta_alerts scraper
+2026-03-26 18:59:27,754 INFO: Scraping alerts for last full day: 2026-03-25
+2026-03-26 18:59:27,754 INFO: Fetching MTA alerts from https://new.mta.info/schedules/alerts
+2026-03-26 18:59:28,551 ERROR: Error fetching MTA alerts: 404 Client Error: Not Found for url: https://www.mta.info/schedules/alerts
+2026-03-26 18:59:28,561 INFO: Found 0 Kensington-relevant alerts
+2026-03-26 18:59:28,567 INFO: No items to save
+2026-03-26 18:59:28,568 INFO: Scraping complete. Saved 0 alerts.
+2026-03-26 19:17:34,149 INFO: Starting mta_alerts scraper
+2026-03-26 19:17:34,150 INFO: Scraping alerts for last full day: 2026-03-25
+2026-03-26 19:17:34,150 INFO: Fetching MTA alerts from https://new.mta.info/schedules/alerts
+2026-03-26 19:17:34,508 ERROR: Error fetching MTA alerts: 404 Client Error: Not Found for url: https://www.mta.info/schedules/alerts
+2026-03-26 19:17:34,517 INFO: Found 0 Kensington-relevant alerts
+2026-03-26 19:17:34,523 INFO: No items to save
+2026-03-26 19:17:34,523 INFO: Scraping complete. Saved 0 alerts.

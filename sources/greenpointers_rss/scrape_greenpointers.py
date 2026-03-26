@@ -65,15 +65,22 @@ def parse_rss_feed():
         items = []
         for entry in feed.entries[:50]:  # Limit to first 50 entries
             try:
+                # Parse published date properly - feedparser returns a time tuple
+                published_at = None
+                if hasattr(entry, 'published_parsed') and entry.published_parsed:
+                    try:
+                        # Convert time tuple to datetime
+                        published_at = datetime(*entry.published_parsed[:6])
+                    except (TypeError, ValueError) as e:
+                        logger.debug(f"Could not parse date: {e}")
+                
                 item = RSSArticleItem(
                     id=entry.get("id", entry.link)[:100],
                     title=entry.title,
                     link=entry.link,
                     summary=entry.get("summary", "")[:2000] if entry.get("summary") else None,
                     content=None,  # Full content not needed for headlines
-                    published_at=datetime.fromisoformat(entry.published_parsed[:19].replace(" ", "T"))
-                        if hasattr(entry, 'published_parsed') and entry.published_parsed
-                        else datetime.now(),
+                    published_at=published_at or datetime.now(),
                     author=entry.get("author", "Greenpointers"),
                     categories=[tag.term for tag in entry.tags] if hasattr(entry, 'tags') else []
                 )

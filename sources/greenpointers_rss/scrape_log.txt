@@ -1,2 +1,294 @@
 # Greenpointers RSS Scrape Log
 # Format: [timestamp] Scrape started at X, ended at Y, found Z items
+2026-03-26 18:42:06,275 INFO: Starting greenpointers_rss scraper
+2026-03-26 18:42:06,275 INFO: Scraping from 2026-03-25 to 2026-03-26
+2026-03-26 18:42:06,275 INFO: Fetching RSS feed from https://greenpointers.com/feed
+2026-03-26 18:42:08,118 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-26 18:42:08,118 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-26 18:42:08,118 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-26 18:42:08,118 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-26 18:42:08,118 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-26 18:42:08,118 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-26 18:42:08,118 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-26 18:42:08,118 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-26 18:42:08,118 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-26 18:42:08,118 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-26 18:42:08,118 INFO: Found 0 Kensington-relevant items
+2026-03-26 18:42:08,118 INFO: No items to save
+2026-03-26 18:42:08,118 INFO: Scraping complete. Saved 0 new items.
+2026-03-26 18:47:33,753 INFO: Starting greenpointers_rss scraper
+2026-03-26 18:47:33,753 INFO: Scraping from 2026-03-25 to 2026-03-26
+2026-03-26 18:47:33,753 INFO: Fetching RSS feed from https://greenpointers.com/feed
+2026-03-26 18:47:35,459 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...teh', 'thomas tomczak']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:47:35,459 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...Meet & Meat', 'skewer']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:47:35,459 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...', 'le studio anthost']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:47:35,460 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...a house', 'vsny films']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:47:35,460 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...rrent', 'Williamsburg']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:47:35,460 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...gs', 'Mohamed Charrad']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:47:35,460 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...rger', 'veggie burger']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:47:35,460 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...burg', 'the debt gala']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:47:35,460 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...glund', 'Williamsburg']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:47:35,460 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...'Greenpoint This Week']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:47:35,460 INFO: Found 0 Kensington-relevant items
+2026-03-26 18:47:35,460 INFO: No items to save
+2026-03-26 18:47:35,460 INFO: Scraping complete. Saved 0 new items.
+2026-03-26 18:54:23,694 INFO: Starting greenpointers_rss scraper
+2026-03-26 18:54:23,694 INFO: Scraping last full day: 2026-03-25
+2026-03-26 18:54:23,694 INFO: Fetching RSS feed from https://greenpointers.com/feed
+2026-03-26 18:54:25,609 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...teh', 'thomas tomczak']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:54:25,609 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...Meet & Meat', 'skewer']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:54:25,609 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...', 'le studio anthost']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:54:25,609 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...a house', 'vsny films']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:54:25,609 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...rrent', 'Williamsburg']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:54:25,609 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...gs', 'Mohamed Charrad']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:54:25,609 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...rger', 'veggie burger']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:54:25,609 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...burg', 'the debt gala']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:54:25,609 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...glund', 'Williamsburg']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:54:25,609 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...'Greenpoint This Week']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 18:54:25,609 INFO: Found 0 Kensington-relevant items
+2026-03-26 18:54:25,609 INFO: No items to save
+2026-03-26 18:54:25,609 INFO: Scraping complete. Saved 0 new items.
+2026-03-26 19:10:32,395 INFO: Starting greenpointers_rss scraper
+2026-03-26 19:10:32,395 INFO: Scraping last full day: 2026-03-25
+2026-03-26 19:10:32,395 INFO: Fetching RSS feed from https://greenpointers.com/feed
+2026-03-26 19:10:34,326 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...teh', 'thomas tomczak']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:10:34,326 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...Meet & Meat', 'skewer']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:10:34,326 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...', 'le studio anthost']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:10:34,326 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...a house', 'vsny films']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:10:34,326 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...rrent', 'Williamsburg']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:10:34,326 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...gs', 'Mohamed Charrad']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:10:34,326 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...rger', 'veggie burger']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:10:34,326 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...burg', 'the debt gala']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:10:34,326 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...glund', 'Williamsburg']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:10:34,326 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...'Greenpoint This Week']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:10:34,326 INFO: Found 0 Kensington-relevant items
+2026-03-26 19:10:34,326 INFO: No items to save
+2026-03-26 19:10:34,326 INFO: Scraping complete. Saved 0 new items.
+2026-03-26 19:12:30,119 INFO: Starting greenpointers_rss scraper
+2026-03-26 19:12:30,119 INFO: Scraping last full day: 2026-03-25
+2026-03-26 19:12:30,119 INFO: Fetching RSS feed from https://greenpointers.com/feed
+2026-03-26 19:12:31,840 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...teh', 'thomas tomczak']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:12:31,840 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...Meet & Meat', 'skewer']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:12:31,840 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...', 'le studio anthost']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:12:31,840 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...a house', 'vsny films']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:12:31,840 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...rrent', 'Williamsburg']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:12:31,840 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...gs', 'Mohamed Charrad']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:12:31,840 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...rger', 'veggie burger']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:12:31,840 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...burg', 'the debt gala']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:12:31,840 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...glund', 'Williamsburg']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:12:31,840 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...'Greenpoint This Week']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:12:31,840 INFO: Found 0 Kensington-relevant items
+2026-03-26 19:12:31,840 INFO: No items to save
+2026-03-26 19:12:31,840 INFO: Scraping complete. Saved 0 new items.
+2026-03-26 19:14:22,813 INFO: Starting greenpointers_rss scraper
+2026-03-26 19:14:22,813 INFO: Scraping last full day: 2026-03-25
+2026-03-26 19:14:22,813 INFO: Fetching RSS feed from https://greenpointers.com/feed
+2026-03-26 19:14:24,612 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...teh', 'thomas tomczak']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:14:24,612 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...Meet & Meat', 'skewer']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:14:24,612 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...', 'le studio anthost']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:14:24,612 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...a house', 'vsny films']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:14:24,613 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...rrent', 'Williamsburg']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:14:24,613 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...gs', 'Mohamed Charrad']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:14:24,613 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...rger', 'veggie burger']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:14:24,613 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...burg', 'the debt gala']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:14:24,613 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...glund', 'Williamsburg']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:14:24,613 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...'Greenpoint This Week']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:14:24,613 INFO: Found 0 Kensington-relevant items
+2026-03-26 19:14:24,613 INFO: No items to save
+2026-03-26 19:14:24,613 INFO: Scraping complete. Saved 0 new items.
+2026-03-26 19:16:42,492 INFO: Starting greenpointers_rss scraper
+2026-03-26 19:16:42,492 INFO: Scraping last full day: 2026-03-25
+2026-03-26 19:16:42,492 INFO: Fetching RSS feed from https://greenpointers.com/feed
+2026-03-26 19:16:44,375 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...teh', 'thomas tomczak']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:16:44,375 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...Meet & Meat', 'skewer']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:16:44,376 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...', 'le studio anthost']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:16:44,376 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...a house', 'vsny films']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:16:44,376 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...rrent', 'Williamsburg']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:16:44,376 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...gs', 'Mohamed Charrad']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:16:44,376 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...rger', 'veggie burger']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:16:44,376 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...burg', 'the debt gala']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:16:44,376 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...glund', 'Williamsburg']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:16:44,376 WARNING: Error parsing entry: 1 validation error for RSSArticleItem
+source_metadata
+  Field required [type=missing, input_value={'id': 'https://greenpoin...'Greenpoint This Week']}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+2026-03-26 19:16:44,376 INFO: Found 0 Kensington-relevant items
+2026-03-26 19:16:44,376 INFO: No items to save
+2026-03-26 19:16:44,376 INFO: Scraping complete. Saved 0 new items.

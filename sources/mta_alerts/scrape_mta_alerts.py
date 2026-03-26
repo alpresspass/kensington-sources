@@ -1,203 +1,240 @@
 #!/usr/bin/env python3
 """
-Scrape MTA service alerts for Kensington-relevant trains (G, L, J, Z, R).
+MTA Alerts Scraper for Kensington Free Press.
 
-Usage:
-    uv run scrape_mta_alerts.py              # Scrape all current alerts
-    uv run scrape_mta_alerts.py --last-day   # Only last full day
-    uv run scrape_mta_alerts.py --since 2026-03-20  # Alerts since date
+Scrapes MTA service alerts and filters for routes relevant to Kensington:
+- G train (primary)
+- L train (secondary - connects to G at 14th St)
+- B, Q trains (via G connection)
+- Bus routes: B25, B46, B63, B67
 """
 
-import argparse
-import json
-import logging
-from datetime import datetime, timedelta
-from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
-
-# Add parent to path for imports
+from datetime import datetime, timezone, timedelta
+import argparse
+import logging
+import os
 import sys
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+import re
 
-from models.alert_item import AlertItem
+# Add parent directory to path for imports
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Configure logging
-LOG_FILE = Path(__file__).parent / "scrape_log.txt"
+from models.mta_alert import MTAAlert
+
+# Set up logging
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s %(levelname)s: %(message)s",
-    handlers=[
-        logging.FileHandler(LOG_FILE),
-        logging.StreamHandler()
-    ]
+    format='%(asctime)s %(levelname)s: %(message)s'
 )
 logger = logging.getLogger(__name__)
 
-SOURCE_NAME = "mta_alerts"
-MTA_ALERTS_URL = "https://new.mta.info/schedules/alerts"
-BASE_DIR = Path(__file__).parent
-SCRAPE_ITEMS_DIR = BASE_DIR / "scrape_items"
+# Routes relevant to Kensington area
+KENSINGTON_RELEVANT_ROUTES = {
+    'subway': ['G', 'L', 'B', 'Q', 'N', 'W', 'R'],
+    'bus': ['B25', 'B46', 'B63', 'B67', 'B15', 'B8']
+}
 
-# Trains relevant to Kensington (11218)
-KENNSINGTON_TRAINS = ["G", "L", "J", "Z", "R", "B", "Q"]
-
-# Kensington-related stations and areas
-KENNSINGTON_LOCATIONS = [
-    "church ave", "grand army plaza", "metropolitan ave", "norwich st",
-    "greenpoint", "williamsburg", "14th street", "broadway-lafayette",
-    "jamaica", "queens boulevard", "forest hills", "downtown brooklyn"
-]
+MTA_ALERTS_URL = "https://new.mta.info/schedules/service-alerts"
 
 
-def is_kensington_relevant(alert: dict) -> bool:
-    """Check if alert affects Kensington area."""
-    text = (alert.get("title", "") + " " + alert.get("description", "")).lower()
+def parse_date_from_description(desc: str) -> datetime:
+    """Try to extract a date from the alert description."""
+    # Common patterns in MTA alerts
+    patterns = [
+        r'(\d{1,2}/\d{1,2})',  # MM/DD format
+        r'([A-Z][a-z]+ \d{1,2})',  # Month DD format
+    ]
     
-    # Check for relevant trains
-    has_train = any(f"{train} train" in text or f" {train}-" in text.lower() 
-                    for train in KENNSINGTON_TRAINS)
+    for pattern in patterns:
+        match = re.search(pattern, desc)
+        if match:
+            date_str = match.group(1)
+            try:
+                # Try parsing with current year
+                return datetime.strptime(f"{datetime.now().year} {date_str}", "%Y %b %d")
+            except ValueError:
+                pass
     
-    # Check for relevant locations
-    has_location = any(loc in text for loc in KENNSINGTON_LOCATIONS)
-    
-    return has_train or has_location
+    return None
 
 
-def fetch_mta_alerts():
-    """Fetch current MTA service alerts."""
+def scrape_mta_alerts(start_date: datetime = None, end_date: datetime = None) -> list[MTAAlert]:
+    """
+    Scrape current MTA service alerts.
+    
+    Args:
+        start_date: Start of date range (inclusive)
+        end_date: End of date range (inclusive)
+        
+    Returns:
+        List of MTAAlert objects for relevant routes
+    """
     logger.info(f"Fetching MTA alerts from {MTA_ALERTS_URL}")
     
     try:
         response = requests.get(MTA_ALERTS_URL, timeout=30)
         response.raise_for_status()
-        
-        soup = BeautifulSoup(response.text, "html.parser")
-        
-        # Find alert cards - MTA uses specific classes
-        alerts = []
-        alert_cards = soup.find_all("div", class_=["alert-card", "service-alert"])
-        
-        for card in alert_cards[:100]:  # Limit results
-            try:
-                title_elem = card.find(["h3", "h4", "span"], recursive=False)
-                description_elem = card.find("p")
-                
-                if title_elem:
-                    alert = {
-                        "title": title_elem.get_text(strip=True),
-                        "description": description_elem.get_text(strip=True) if description_elem else "",
-                        "url": f"{MTA_ALERTS_URL}#alert-{len(alerts)}"
-                    }
-                    
-                    # Filter for Kensington relevance
-                    if is_kensington_relevant(alert):
-                        alerts.append(alert)
-            except Exception as e:
-                logger.warning(f"Error parsing alert card: {e}")
-        
-        return alerts
-    except Exception as e:
-        logger.error(f"Error fetching MTA alerts: {e}")
+    except requests.RequestException as e:
+        logger.error(f"Failed to fetch MTA alerts: {e}")
         return []
+    
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    # Find alert containers - structure may vary
+    alert_containers = soup.find_all('div', class_='alert-container') or \
+                       soup.find_all('article') or \
+                       soup.select('.service-alert, .alert-item')
+    
+    if not alert_containers:
+        logger.warning("Could not find alert containers on page")
+        return []
+    
+    alerts = []
+    current_time = datetime.now(timezone.utc)
+    
+    for container in alert_containers:
+        # Extract route information
+        route_elem = container.find('span', class_='route') or \
+                     container.find('h2') or \
+                     container.find('strong')
+        
+        if not route_elem:
+            continue
+            
+        route_text = route_elem.get_text(strip=True)
+        
+        # Determine mode and extract route name
+        mode = 'subway'
+        route_name = route_text
+        
+        if any(route in route_text.upper() for route in ['BUS', 'MTA BUS']):
+            mode = 'bus'
+        elif 'LIRR' in route_text.upper():
+            mode = 'lirr'
+        elif 'PATH' in route_text.upper():
+            mode = 'path'
+        
+        # Check if this route is relevant to Kensington
+        is_relevant = False
+        if mode == 'subway':
+            is_relevant = any(route in route_text for route in KENSINGTON_RELEVANT_ROUTES['subway'])
+        elif mode == 'bus':
+            is_relevant = any(route in route_text for route in KENSINGTON_RELEVANT_ROUTES['bus'])
+        
+        if not is_relevant:
+            continue
+        
+        # Extract alert description
+        desc_elem = container.find('p') or container.find('div', class_='description')
+        description = desc_elem.get_text(strip=True) if desc_elem else route_text
+        
+        # Determine alert type based on keywords
+        alert_type = 'service_change'
+        desc_lower = description.lower()
+        if 'delay' in desc_lower:
+            alert_type = 'delay'
+        elif 'construction' in desc_lower or 'track work' in desc_lower:
+            alert_type = 'construction'
+        elif 'weekend' in desc_lower:
+            alert_type = 'weekend_service'
+        
+        # Create unique ID
+        alert_id = f"mta_{mode}_{route_name.replace(' ', '_').lower()}_{current_time.strftime('%Y%m%d_%H%M%S')}"
+        
+        alert = MTAAlert(
+            id=alert_id,
+            title=f"{route_text}: {description[:100]}..." if len(description) > 100 else f"{route_text}: {description}",
+            published_at=current_time,
+            route=route_name,
+            mode=mode,
+            alert_type=alert_type,
+            description=description,
+            severity=None,
+            start_time=parse_date_from_description(description),
+            end_time=None
+        )
+        
+        alerts.append(alert)
+    
+    logger.info(f"Found {len(alerts)} relevant MTA alerts")
+    return alerts
 
 
-def parse_alerts_to_items(alerts, scrape_date=None):
-    """Convert raw alerts to AlertItem Pydantic models."""
-    items = []
+def save_alerts_to_file(alerts: list[MTAAlert], date_str: str):
+    """
+    Save alerts to a JSON file organized by date.
     
-    for alert in alerts:
-        try:
-            item = AlertItem(
-                id=f"mta_{alert['title'][:50].lower().replace(' ', '_')}",
-                title=alert["title"],
-                description=alert.get("description", ""),
-                url=alert.get("url", ""),
-                affected_lines=[],  # Parse from title if possible
-                alert_type="service_change",  # Could be: delay, closure, service_change
-                published_at=scrape_date or datetime.now(),
-                source="MTA"
-            )
-            items.append(item)
-        except Exception as e:
-            logger.warning(f"Error creating AlertItem: {e}")
+    Args:
+        alerts: List of MTAAlert objects
+        date_str: Date string for folder organization (YYYY-MM-DD)
+    """
+    if not alerts:
+        logger.info("No alerts to save")
+        return
     
-    return items
-
-
-def save_items(items, date_str=None):
-    """Save scraped alerts to date-organized folders."""
-    if not items:
-        logger.info("No items to save")
-        return 0
+    # Create date directory
+    scrape_items_dir = os.path.join(os.path.dirname(__file__), 'scrape_items')
+    date_dir = os.path.join(scrape_items_dir, date_str)
+    os.makedirs(date_dir, exist_ok=True)
     
-    # Use provided date or today
-    if not date_str:
-        date_str = datetime.now().strftime("%Y-%m-%d")
+    # Save alerts to JSON file
+    output_file = os.path.join(date_dir, f"mta_alerts_{date_str}.json")
     
-    day_dir = SCRAPE_ITEMS_DIR / date_str
-    day_dir.mkdir(parents=True, exist_ok=True)
+    import json
+    with open(output_file, 'w') as f:
+        json.dump([alert.model_dump() for alert in alerts], f, indent=2, default=str)
     
-    saved_count = 0
-    
-    # Save all items as a single JSON array for this day
-    filepath = day_dir / f"{SOURCE_NAME}_{date_str}.json"
-    
-    with open(filepath, "w") as f:
-        json.dump([item.model_dump() for item in items], f, indent=2, default=str)
-    
-    saved_count = len(items)
-    logger.info(f"Saved {saved_count} alerts to {filepath}")
-    return saved_count
-
-
-def get_last_full_day() -> str:
-    """Get date string for last full day (yesterday)."""
-    yesterday = datetime.now() - timedelta(days=1)
-    return yesterday.strftime("%Y-%m-%d")
+    logger.info(f"Saved {len(alerts)} alerts to {output_file}")
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Scrape MTA service alerts for Kensington-relevant trains"
-    )
-    parser.add_argument(
-        "--last-day",
-        action="store_true",
-        help="Only scrape last full day (12:01am EST → 11:59pm)"
-    )
-    parser.add_argument(
-        "--since",
-        type=str,
-        help="Scrape alerts since date (YYYY-MM-DD)"
-    )
+    parser = argparse.ArgumentParser(description='Scrape MTA service alerts')
+    parser.add_argument('--last-day', action='store_true', help='Get alerts from last full day (12:01am-11:59pm)')
+    parser.add_argument('--start-date', type=str, help='Start date (YYYY-MM-DD)')
+    parser.add_argument('--end-date', type=str, help='End date (YYYY-MM-DD)')
     args = parser.parse_args()
     
-    logger.info(f"Starting {SOURCE_NAME} scraper")
-    
-    # Determine date for saving
+    # Determine date range
     if args.last_day:
-        date_str = get_last_full_day()
-        logger.info(f"Scraping alerts for last full day: {date_str}")
-    elif args.since:
-        # For --since, we'd need to check historical data (not available via web)
-        logger.warning("MTA doesn't provide historical alerts via web. Scraping current alerts.")
-        date_str = datetime.now().strftime("%Y-%m-%d")
+        yesterday = datetime.now(timezone.utc) - timedelta(days=1)
+        start_date = yesterday.replace(hour=0, minute=1, second=0, microsecond=0)
+        end_date = yesterday.replace(hour=23, minute=59, second=59, microsecond=0)
+    elif args.start_date and args.end_date:
+        start_date = datetime.strptime(args.start_date, '%Y-%m-%d')
+        end_date = datetime.strptime(args.end_date, '%Y-%m-%d').replace(hour=23, minute=59, second=59)
     else:
-        date_str = datetime.now().strftime("%Y-%m-%d")
-        logger.info(f"Scraping current alerts for {date_str}")
+        # Default: current time
+        start_date = None
+        end_date = None
     
-    # Fetch alerts
-    raw_alerts = fetch_mta_alerts()
-    logger.info(f"Found {len(raw_alerts)} Kensington-relevant alerts")
+    # Log scrape start
+    log_file = os.path.join(os.path.dirname(__file__), 'scrape_log.txt')
+    with open(log_file, 'a') as f:
+        f.write(f"Scrape started: {datetime.now(timezone.utc).isoformat()}\n")
     
-    # Parse to items
-    items = parse_alerts_to_items(raw_alerts, scrape_date=datetime.strptime(date_str, "%Y-%m-%d"))
+    logger.info("Starting MTA alerts scrape...")
     
-    # Save items
-    saved = save_items(items, date_str=date_str)
-    logger.info(f"Scraping complete. Saved {saved} alerts.")
+    # Scrape alerts
+    alerts = scrape_mta_alerts(start_date, end_date)
+    
+    if not alerts:
+        logger.info("No relevant alerts found")
+        with open(log_file, 'a') as f:
+            f.write(f"Scrape completed: {datetime.now(timezone.utc).isoformat()} - No alerts\n")
+        return
+    
+    # Save to date-organized folder
+    today_str = datetime.now().strftime('%Y-%m-%d')
+    save_alerts_to_file(alerts, today_str)
+    
+    logger.info(f"Scraped {len(alerts)} MTA alerts")
+    
+    # Log scrape completion
+    with open(log_file, 'a') as f:
+        f.write(f"Scrape completed: {datetime.now(timezone.utc).isoformat} - {len(alerts)} alerts\n")
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
