@@ -97,12 +97,12 @@ class WebsiteScraper(BaseScraper):
                 title_elem = article.find(['h1', 'h2', 'h3', 'title'])
                 title = (title_elem.get_text(strip=True) if title_elem else f"Article {i+1}")[:200]
                 
-                # Get content - try to find paragraph or use full text
+                # Get content - try to find paragraph or use full text (limit size)
                 content_elem = article.find(['p', 'div', 'span'])
                 if not content_elem:
                     content_elem = article
                 
-                content = content_elem.get_text(strip=True)[:2000]
+                content = content_elem.get_text(strip=True)[:500]  # Reduced from 2000 to save space
                 
                 # Try to extract published date
                 pub_date = None
