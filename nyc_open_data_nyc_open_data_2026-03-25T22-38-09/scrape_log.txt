@@ -1,3 +1,0 @@
-[2026-03-26 04:54:09] Error scraping https://data.cityofnewyork.us/City-Government/311-Service-Requests-2010-present/3kaq-zb5s: 404 Client Error: Not Found for url: https://data.cityofnewyork.us/City-Government/311-Service-Requests-2010-present/3kaq-zb5s
-[2026-03-26 05:18:34] Error scraping https://data.cityofnewyork.us/City-Government/311-Service-Requests-2010-present/3kaq-zb5s: 404 Client Error: Not Found for url: https://data.cityofnewyork.us/City-Government/311-Service-Requests-2010-present/3kaq-zb5s
-[2026-03-26 05:20:53] Error scraping https://data.cityofnewyork.us/City-Government/311-Service-Requests-2010-present/3kaq-zb5s: 404 Client Error: Not Found for url: https://data.cityofnewyork.us/City-Government/311-Service-Requests-2010-present/3kaq-zb5s

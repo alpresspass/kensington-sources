@@ -1,3 +1,0 @@
-[2026-03-26 04:54:10] Error scraping https://data.cityofnewyork.us/Education/School-Performance-Snapshots/8k2e-qm7p: 404 Client Error: Not Found for url: https://data.cityofnewyork.us/Education/School-Performance-Snapshots/8k2e-qm7p
-[2026-03-26 05:18:36] Error scraping https://data.cityofnewyork.us/Education/School-Performance-Snapshots/8k2e-qm7p: 404 Client Error: Not Found for url: https://data.cityofnewyork.us/Education/School-Performance-Snapshots/8k2e-qm7p
-[2026-03-26 05:20:54] Error scraping https://data.cityofnewyork.us/Education/School-Performance-Snapshots/8k2e-qm7p: 404 Client Error: Not Found for url: https://data.cityofnewyork.us/Education/School-Performance-Snapshots/8k2e-qm7p

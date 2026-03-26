@@ -1,0 +1,2 @@
+# Greenpointers RSS Scrape Log
+# Format: [timestamp] Scrape started at X, ended at Y, found Z items
