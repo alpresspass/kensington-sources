@@ -4,6 +4,7 @@ import sys
 from datetime import date
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from typing import Union
 
 # Add src to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -12,7 +13,7 @@ from src.website_scraper import WebsiteScraper
 from src.rss_scraper import RSSFeedScraper
 
 
-def get_scraper_for_source(source_path: Path) -> WebsiteScraper | RSSFeedScraper | None:
+def get_scraper_for_source(source_path: Path) -> Union[WebsiteScraper, RSSFeedScraper, None]:
     """Determine the appropriate scraper for a source."""
     name = source_path.name.lower()
     

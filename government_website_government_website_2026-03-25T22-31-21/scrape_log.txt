@@ -1,0 +1,1 @@
+[2026-03-26 04:54:40] Error scraping https://zap.planning.nyc.gov/projects/2024K0358: HTTPSConnectionPool(host='zap.planning.nyc.gov', port=443): Read timed out. (read timeout=30)

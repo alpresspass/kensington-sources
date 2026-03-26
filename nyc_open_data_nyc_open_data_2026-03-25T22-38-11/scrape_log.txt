@@ -1,0 +1,1 @@
+[2026-03-26 04:54:10] Error scraping https://data.cityofnewyork.us/Housing-Development/HPD-House-Condition-Complaints-2009-present/hg4s-8k2m: 404 Client Error: Not Found for url: https://data.cityofnewyork.us/Housing-Development/HPD-House-Condition-Complaints-2009-present/hg4s-8k2m
