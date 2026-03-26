@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NYC Planning - Zoning Application Search</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-0246d7efb39115efbfc1725c82da02a4.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32-da02525a10409479fcdc12a0d38966da.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16-8905a7bc6aad15bcd8c7388321bc707c.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@nycplanning" />
+    <meta name="twitter:creator" content="@nycplanninglabs" />
+    <meta name="twitter:title" content="NYC Planning ZAP Search" />
+    <meta name="twitter:description" content="Find New York City Zoning and Land Use Applications" />
+    <meta name="twitter:image" content="https://zap.planning.nyc.gov/img/screenshot-e9dca67571f7f05689c26718d2e9bbc3.png" />
+
+    <!-- Facebook / Open Graph tags -->
+    <meta property="og:title" content="NYC Planning ZAP Search" />
+    <meta property="og:description" content="Find New York City Zoning and Land Use Applications" />
+    <meta property="og:image" content="https://zap.planning.nyc.gov/img/screenshot-1200x630-218581d66d8f03b3eacad0160555a9d6.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Fullstory -->
+    <script>
+      window['_fs_host'] = 'fullstory.com';
+      window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
+      window['_fs_org'] = 'o-19S9J2-na1';
+      window['_fs_namespace'] = 'FS';
+      (function(m,n,e,t,l,o,g,y){
+          if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
+          g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];
+          o=n.createElement(t);o.async=1;o.crossOrigin='anonymous';o.src='https://'+_fs_script;
+          y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
+          g.identify=function(i,v,s){g(l,{uid:i},s);if(v)g(l,v,s)};g.setUserVars=function(v,s){g(l,v,s)};g.event=function(i,v,s){g('event',{n:i,p:v},s)};
+          g.anonymize=function(){g.identify(!!0)};
+          g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};
+          g.log = function(a,b){g("log",[a,b])};
+          g.consent=function(a){g("consent",!arguments.length||a)};
+          g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
+          g.clearUserCookie=function(){};
+          g.setVars=function(n, p){g('setVars',[n,p]);};
+          g._w={};y='XMLHttpRequest';g._w[y]=m[y];y='fetch';g._w[y]=m[y];
+          if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};
+          g._v="1.3.0";
+      })(window,document,window['_fs_namespace'],'script','user');
+    </script>
+
+    
+
+    
+<meta name="labs-zap-search/config/environment" content="%7B%22modulePrefix%22%3A%22labs-zap-search%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%2F%22%2C%22locationType%22%3A%22router-scroll%22%2C%22historySupportMiddleware%22%3Atrue%2C%22routerScroll%22%3A%7B%22scrollElement%22%3A%22%23scrolling-result-content%22%7D%2C%22NYC_ID_HOST%22%3A%22https%3A%2F%2Fwww1.nyc.gov%2Faccount%22%2C%22maintenanceTimes%22%3A%5B%2206%2F01%2F22%2015%3A00%22%2C%2206%2F01%2F22%2016%3A00%22%5D%2C%22featureFlagExcludeFromSearchResults%22%3Afalse%2C%22featureFlagShowSandboxWarning%22%3Afalse%2C%22host%22%3A%22https%3A%2F%2Fzap-api-production.herokuapp.com%22%2C%22OAUTH_ENDPOINT%22%3A%22https%3A%2F%2Fwww1.nyc.gov%2Faccount%2Fapi%2Foauth%2Fauthorize.htm%3Fresponse_type%3Dtoken%26client_id%3Dlup-portal-production%22%2C%22LUPP_ENABLED%22%3Atrue%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22fontawesome%22%3A%7B%22icons%22%3A%7B%22free-solid-svg-icons%22%3A%22all%22%2C%22free-regular-svg-icons%22%3A%22all%22%2C%22free-brands-svg-icons%22%3A%22all%22%7D%7D%2C%22APP%22%3A%7B%22name%22%3A%22labs-zap-search%22%2C%22version%22%3A%220.0.0%2B3ac6114c%22%7D%2C%22labs-search%22%3A%7B%22host%22%3A%22https%3A%2F%2Fsearch-api-production.herokuapp.com%22%2C%22route%22%3A%22search%22%2C%22helpers%22%3A%5B%22geosearch-v2%22%5D%7D%2C%22mapbox-gl%22%3A%7B%22accessToken%22%3A%22%22%2C%22map%22%3A%7B%22style%22%3A%22https%3A%2F%2Flabs-layers-api.herokuapp.com%2Fv1%2Fbase%2Fstyle.json%22%2C%22zoom%22%3A12.25%2C%22center%22%3A%5B-73.9868%2C40.724%5D%7D%7D%2C%22gReCaptcha%22%3A%7B%22jsUrl%22%3A%22https%3A%2F%2Fwww.google.com%2Frecaptcha%2Fapi.js%3Frender%3Dexplicit%22%2C%22siteKey%22%3A%226LdWI2IUAAAAACg5LHP4ucs7Ep1UzaFsl96FHyPK%22%7D%2C%22metricsAdapters%22%3A%5B%7B%22name%22%3A%22GoogleAnalytics%22%2C%22environments%22%3A%5B%22development%22%2C%22production%22%5D%2C%22config%22%3A%7B%22id%22%3A%22UA-84250233-13%22%2C%22debug%22%3Afalse%2C%22trace%22%3Afalse%2C%22sendHitTask%22%3Atrue%7D%7D%2C%7B%22name%22%3A%22GoogleAnalyticsFour%22%2C%22environments%22%3A%5B%22development%22%2C%22production%22%5D%2C%22config%22%3A%7B%22id%22%3A%22G-ZVJLNQ41N5%22%2C%22options%22%3A%7B%22debug_mode%22%3Afalse%7D%7D%7D%5D%2C%22labels%22%3A%7B%22filters%22%3A%7B%22action-types%22%3A%22Action%20Type%22%2C%22block%22%3A%22Borough%20%2F%20Block%22%2C%22boroughs%22%3A%22Borough%20%2F%20Block%22%2C%22community-districts%22%3A%22Community%20District%22%2C%22dcp_certifiedreferred%22%3A%22Date%20Certified%20%2F%20Referred%22%2C%22dcp_femafloodzonea%22%3A%22FEMA%20Flood%20Zone%22%2C%22dcp_femafloodzoneshadedx%22%3A%22FEMA%20Flood%20Zone%22%2C%22dcp_publicstatus%22%3A%22Project%20Status%22%2C%22dcp_ulurp_nonulurp%22%3A%22ULURP%20Type%22%2C%22dcp_easeis%22%3A%22CEQR%22%2C%22distance_from_point%22%3A%22Radius%20Filter%22%2C%22project_applicant_text%22%3A%22Text%20Match%22%2C%22radius_from_point%22%3A%22Radius%20Filter%22%2C%22zoning-resolutions%22%3A%22Zoning%20Resolutions%22%2C%22dcp_applicability%22%3A%22Racial%20Equity%20Report%20Applicability%22%7D%7D%2C%22ember-cli-mirage%22%3A%7B%22enabled%22%3Afalse%2C%22usingProxy%22%3Afalse%2C%22useDefaultPassthroughs%22%3Atrue%7D%2C%22exportApplicationGlobal%22%3Afalse%2C%22isModuleUnification%22%3Afalse%7D" />
+
+    <link integrity="" rel="stylesheet" href="/assets/vendor-1cc06abb139dff6f3b109c637e3e6d1d.css">
+    <link integrity="" rel="stylesheet" href="/assets/labs-zap-search-d99a26e09253bc26dd2ce9d88ac44493.css">
+
+    
+  </head>
+  <body>
+    
+
+    <script src="/assets/vendor-f892473c0c4f04c179caa1ae70fc40bf.js" integrity="sha256-SJGzI5W05zFlc+pSUAZEGcIhlvpL/S1zV8Hqa0g61uo= sha512-G0jBMhdpNLp3qeL5JKp4Ix9hg56DyfcIjfI//j9+yl9zXM7UIpT3zm/yW7OZ+h82XCGFCytdbwgICpZVuEwyPQ==" ></script>
+    <script src="/assets/labs-zap-search-b23958130dfd9d09fa2beac90377850a.js" integrity="sha256-+LwRVSHKyRlP53wBF41TzB+IHHjhsyigjqZp/2ZPkzQ= sha512-6o4tpyHInNBnmPusjE5aWcxIx98Sluk40ZR6f3lOwFCn33gsH05x/xXAkBXeo9iMxDYAr5bncQmS7RY0Ly1U2A==" ></script>
+
+    <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render=explicit" async></script>
+<div id="ember-basic-dropdown-wormhole"></div>
+  </body>
+</html>

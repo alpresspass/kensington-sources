@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Landmarks Preservation Commission</title>
+<!--fixed-layout-->
+<!--ls:begin[stylesheet]-->
+<link href="/iwov-resources/fixed-layout/3-Row Simple.css" type="text/css" rel="stylesheet">
+<!--ls:end[stylesheet]-->
+<!--ls:begin[meta-keywords]-->
+<meta name="keywords" content="">
+<!--ls:end[meta-keywords]-->
+<!--ls:begin[meta-description]-->
+<meta name="description" content="The Landmarks Preservation Commission (LPC) is the largest municipal preservation agency in the nation. It is responsible for protecting New York City's architecturally, historically, and culturally significant buildings and sites by granting them landmark or historic district status, and regulating them after designation.">
+<!--ls:end[meta-description]-->
+<!--ls:begin[custom-meta-data]-->
+<!--ls:end[custom-meta-data]-->
+<!--ls:begin[meta-vpath]-->
+<meta name="vpath" content="">
+<!--ls:end[meta-vpath]-->
+<!--ls:begin[meta-page-locale-name]-->
+<meta name="page-locale-name" content="">
+<!--ls:end[meta-page-locale-name]-->
+<!--
+					ls:begin[pre-head-injection]
+				--><!--[if IE]>        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">        <![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"/><!-- Google Translate Plugin --><meta name="google-translate-customization" content="4707bd7f535893a0-45bca7b6a97e5a2d-g609df9381571b349-c"/><!--[if lt IE 9]>            <script src="/assets/home/js/libs/html5shiv.js" type="text/javascript"></script>        <![endif]--><!--
+					ls:end[pre-head-injection]
+				--><!--
+					ls:begin[social_media_injection]
+				--><!--
+					ls:end[social_media_injection]
+				--><!--ls:begin[head-injection]--><!-- GLOBAL STYLES --><link href="/assets/home/css/css-min/global.css" media="screen" rel="stylesheet" type="text/css" /><link href="/assets/home/css/css-min/module.css" media="screen" rel="stylesheet" type="text/css" /><!-- PRINT STYLE --><link rel="stylesheet" href="/assets/home/css/print.css" type="text/css" media="print" /><!-- PAGE SPECIFIC STYLES --><link href="/assets/home/css/modules/status-updates-short.css" media="screen" rel="stylesheet" type="text/css" /><link href="/assets/home/css/modules/status-updates-mini.css" media="screen" rel="stylesheet" type="text/css" /><link href="/assets/home/css/includes/header-agencies.css" media="screen" rel="stylesheet" type="text/css" /><link href="/assets/home/css/modules/news-panel.css" media="screen" rel="stylesheet" type="text/css" /><link href="/assets/home/css/modules/agencies-about-links.css" media="screen" rel="stylesheet" type="text/css" /><link href="/assets/home/css/modules/programs-and-initiatives.css" media="screen" rel="stylesheet" type="text/css" /><link href="/assets/home/css/modules/homepage-hero.css" media="screen" rel="stylesheet" type="text/css" /><link href="/assets/home/css/pages/agencies/index.css" media="screen" rel="stylesheet" type="text/css"/><link href="/assets/lpc/css/agency-styles.css" media="screen" rel="stylesheet" type="text/css"/><!--[if (gte IE 6)&(lte IE 8)]>        <script type="text/javascript" src="/assets/home/js/libs/selectivizr.js"></script>        <![endif]--><!--[if IE 8]>        <script type="text/javascript" src="/assets/home/js/libs/respond.min.js"></script>        <![endif]--><script src="/assets/home/js/libs/modernizr-2.6.2.min.js" type="text/javascript"></script><!--ls:end[head-injection]--><!--ls:begin[tracker-injection]--><!--ls:end[tracker-injection]--><!--ls:begin[script]--><!--ls:end[script]-->
+                              <script>!function(a){var e="https://s.go-mpulse.net/boomerang/",t="addEventListener";if("False"=="True")a.BOOMR_config=a.BOOMR_config||{},a.BOOMR_config.PageParams=a.BOOMR_config.PageParams||{},a.BOOMR_config.PageParams.pci=!0,e="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="QMXLB-WG9C2-LTK58-FW2PB-6ST8X",function(){function n(e){a.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!a.BOOMR||!a.BOOMR.version&&!a.BOOMR.snippetExecuted){a.BOOMR=a.BOOMR||{},a.BOOMR.snippetExecuted=!0;var i,_,o,r=document.createElement("iframe");if(a[t])a[t]("load",n,!1);else if(a.attachEvent)a.attachEvent("onload",n);r.src="javascript:void(0)",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="width:0;height:0;border:0;display:none;",o=document.getElementsByTagName("script")[0],o.parentNode.insertBefore(r,o);try{_=r.contentWindow.document}catch(O){i=document.domain,r.src="javascript:var d=document.open();d.domain='"+i+"';void(0);",_=r.contentWindow.document}_.open()._l=function(){var a=this.createElement("script");if(i)this.domain=i;a.id="boomr-if-as",a.src=e+"QMXLB-WG9C2-LTK58-FW2PB-6ST8X",BOOMR_lstart=(new Date).getTime(),this.body.appendChild(a)},_.write("<bo"+'dy onload="document._l();">'),_.close()}}(),"".length>0)if(a&&"performance"in a&&a.performance&&"function"==typeof a.performance.setResourceTimingBufferSize)a.performance.setResourceTimingBufferSize();!function(){if(BOOMR=a.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var e=""=="true"?1:0,t="",n="eyaeqcci2lnqajqacqnryaaqqfu4jgb5-f-ad0272923-clienttons-s.akamaihd.net",i="false"=="true"?2:1,_={"ak.v":"39","ak.cp":"1071053","ak.ai":parseInt("181928",10),"ak.ol":"0","ak.cr":32,"ak.ipv":6,"ak.proto":"http/1.1","ak.rid":"5b187ea8","ak.r":47163,"ak.a2":e,"ak.m":"dscb","ak.n":"essl","ak.bpcip":"2600:4808:48d2:db00::","ak.cport":51219,"ak.gh":"184.24.96.169","ak.quicv":"","ak.tlsv":"tls1.2","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"bbr","ak.t":"1774491709","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==8X8Ft+RX4qYCg6CVi1ELy7c7NwNHE7LVFT4a9yPuXoBfSxvI8hAdLva0+AUBsf6WO0UVhWzBSdSG1c9rvIy29iez7IEPV/4Su+5r8/VCpwGrXvZCHf6tWX1iyqCus58uTkeiSTlyVXjtAs5Y6c7aBLxTu73fyXj7I/oiCyf1Rl1DZ43XWbnnKnK1MOe1K+biusotXY7ZqW960KUaSwu1z9/ehVr62nn6Vp7P9Bx06XKVBdf5RxTbxVceKJJEj7a7LUZxwhUJn3ZEjb2cOFcXof8xm2Z9NYz210uQIM8lZ1xYvGWFAsalJ5L44MMrT0Dkwwepa++UHU0+oGaYIbMh5UCmRc2ZrFgN1eotsAFkJnZD7PoarNnthk1PKjkIz2++k0KdAuGLKJ72cakqhJ7LhRPh5uHeAEZXtJviJX9PozA=","ak.pv":"111","ak.dpoabenc":"","ak.tf":i};if(""!==t)_["ak.ruds"]=t;var o={i:!1,av:function(e){var t="http.initiator";if(e&&(!e[t]||"spa_hard"===e[t]))_["ak.feo"]=void 0!==a.aFeoApplied?1:0,BOOMR.addVar(_)},rv:function(){var a=["ak.bpcip","ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(a)}};BOOMR.plugins.AK={akVars:_,akDNSPreFetchDomain:n,init:function(){if(!o.i){var a=BOOMR.subscribe;a("before_beacon",o.av,null,null),a("onbeacon",o.rv,null,null),o.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script></head>
+<body id="agencies-index">
+<!--ls:begin[body]--><div class="ls-canvas page" id="outer-wrap">
+<div class="ls-row" id="inner-wrap">
+<div class="ls-fxr" id="ls-gen77353728-ls-fxr">
+<div class="ls-col" id="ls-row-1-col-1">
+<div class="ls-col-body" id="ls-gen77353729-ls-col-body">
+<div class="ls-row main-header" id="top">
+<div class="ls-fxr" id="ls-gen77353730-ls-fxr">
+<div class="ls-col block" id="ls-row-1-col-1-row-1-col-1">
+<div class="ls-col-body" id="ls-gen77353731-ls-col-body">
+<div class="ls-row" id="ls-row-1-col-1-row-1-col-1-row-1">
+<div class="ls-fxr" id="ls-gen77353732-ls-fxr">
+<div class="ls-area" id="ls-row-1-col-1-row-1-col-1-row-1-area-1">
+<div class="ls-area-body" id="ls-gen77353733-ls-area-body">
+<div class="ls-cmp-wrap ls-1st" id="w1459807949428">
+<!--ls:begin[component-1459807949428]-->
+<div class="iw_component" id="1459807949428">
+</div>
+<!--ls:end[component-1459807949428]-->
+</div>
+<div class="ls-cmp-wrap" id="w1459807949429">
+<!--ls:begin[component-1459807949429]-->
+<div class="iw_component" id="1459807949429"><div class="agency-header">
+<div class="upper-header-black">
+<div class="container">
+<span class="upper-header-left"><a href="http://www1.nyc.gov"><img src="/assets/home/images/global/nyc_white.png" alt="NYC" class="small-nyc-logo"></a><img src="/assets/home/images/global/upper-header-divider.gif" alt=""><span class="upper-header-black-title">Landmarks Preservation Commission</span></span><span class="upper-header-padding"></span><span class="upper-header-right"><span class="upper-header-three-one-one"><a href="/311/index.page">311</a></span><img src="/assets/home/images/global/upper-header-divider.gif" alt=""><span class="upper-header-search"><a href="/home/search/index.page">Search all NYC.gov websites</a></span></span>
+</div>
+</div>
+</div><div role="banner" class="main-header">
+<div class="block">
+<div class="header-top">
+<div class="container">
+<a href="#" class="toggle-mobile-side-nav visible-phone" id="nav-open-btn">Menu</a><span class="welcome-text hidden-phone agency-header"></span>
+<div class="agency-logo-wrapper">
+<a href="/site/lpc/index.page"><img class="agency-logo" src="/assets/lpc/images/content/header/logo.png" alt="Landmarks Preservation Commission"></a>
+</div>
+<div class="hidden-phone" id="header-links">
+<div class="language-gif">
+<img src="/assets/home/images/global/language.gif" alt="Language"></div>
+<div class="language-selector">
+<div id="google_translate_element"></div>
+</div>
+<a class="text-size hidden-phone" href="http://www1.nyc.gov/home/text-size.page">Text-Size</a>
+</div>
+<a href="#" class="visible-phone nav-sprite-mobile" id="toggle-mobile-search"><span class="hidden">Search</span></a>
+</div>
+</div>
+<div class="container nav-outer">
+<nav role="navigation" class="hidden-phone" id="nav">
+<div class="block">
+<ul>
+<li class="nav-home hidden-phone">
+<a href="/site/lpc/index.page">
+                      Home</a>
+</li>
+<li>
+<a href="/site/lpc/about/about-lpc.page">About</a>
+</li>
+<li>
+<a href="/site/lpc/designations/designations.page">Designations</a>
+</li>
+<li>
+<a href="/site/lpc/applications/applications.page">Applications</a>
+</li>
+<li>
+<a href="/site/lpc/hearings/hearings.page">Hearings</a>
+</li>
+<li>
+<a href="/site/lpc/violations/violations.page">Violations</a>
+</li>
+<li>
+<a href="/site/lpc/discover/discover.page">Discover</a>
+</li>
+<li class="hidden-phone toggle-search-wide-background-ico-search" id="toggle-search-wide"></li>
+</ul>
+</div>
+</nav>
+<div class="global-input-search">
+<form method="GET" action="/home/search/index.page" name="filter-search-form" class="hidden hidden-phone" id="global-search-form1">
+<div class="field-search">
+<input style="color: transparent" type="submit" class="ico-search btn-filter-search" value="submit" aria-hidden="true">
+<div class="input-padding">
+<label for="search-header" class="sr-only">Search</label><input id="search-header" type="text" name="search-terms" placeholder="Search" class="input-search input-black filter-item placeholder"><input type="hidden" name="sitesearch" value="www1.nyc.gov/site/lpc"><span class="reader-only"><input value="submit" aria-label="Submit" type="submit"></span>
+</div>
+</div>
+</form>
+</div>
+<div class="global-input-search visible-phone hidden-phone" id="nav-top-searches">
+<div class="block">
+<form class="hidden" method="GET" action="/home/search/index.page" name="filter-search-form" id="global-search-form2">
+<div class="field-search">
+<input style="color: transparent" aria-label="Submit" value="Submit" class="ico-search btn-filter-search" type="submit">
+<div class="input-padding">
+<label for="search-header-2" class="sr-only">Search</label><input id="search-header-2" class="input-search input-black filter-item" placeholder="Search" name="search-terms" type="text"><input type="hidden" name="sitesearch" value="www1.nyc.gov/site/lpc">
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--ls:end[component-1459807949429]-->
+</div>
+</div>
+</div>
+<div class="ls-row-clr"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ls-row-clr"></div>
+</div>
+</div>
+<div class="ls-row main" id="main">
+<div class="ls-fxr" id="ls-gen77353734-ls-fxr">
+<div class="ls-area" id="ls-row-1-col-1-row-2-area-1">
+<div class="ls-area-body" id="ls-gen77353735-ls-area-body">
+<div class="ls-cmp-wrap ls-1st" id="w1459807949430">
+<!--ls:begin[component-1459807949430]-->
+<div class="iw_component" id="1459807949430"><div class="row agency-background">
+<div class="row">
+<div class="row hero-highlighted">
+<script type="text/javascript">var hero_type="nostatus";</script>
+<div class="container">
+<div class="module module-homepage-hero clearfix" data-autoPlay="true">
+<a name="hero-screen-reader" id="hero-screen-reader"></a>
+<div id="content-slider" class="royalSlider content-slider rsDefault">
+                                           
+                                                                          <div class="slide" data-bg-color="#0a5796">
+										<div class="img-container">   
+                                                                                                <img class="rsImg" src="/assets/lpc/images/content/hero/West-130th-132nd-Streets-Historic-District-Marker-Unveiling.jpeg
+                                           " alt="Photo of smiling people standing next to a marker.
+                                           "/> <!-- end img tag -->
+											<div class="bg-gradient"></div>
+										</div> <!-- end img-container-->
+                                                <div class="richtext">
+<h2 class="hero-title"><a class="arrow-link arrow-link-white inline" href="/site/lpc/about/pr2026/lpc-unveils-new-historic-district-markers-commemorating-central-harlem.page">LPC Unveils New Historic District Markers Commemorating the Central Harlem &ndash; West 130th-132nd Streets Historic District</a></h2>
+<p>
+<a class="read-more" href="/site/lpc/about/pr2026/lpc-unveils-new-historic-district-markers-commemorating-central-harlem.page"></a>
+</p>
+</div>
+<div class="module module-stats">
+<span class="stats-title">Learn More</span>
+<!--Need clearfix to get all characters to display desktop-->
+<ul class="clearfix"><p>LPC joined State Senator Cleare, Assemblymember Wright, Councilmember Salaam, NYLPF, Manhattan Community Board 10, and Save Harlem Now! to unveil new markers commemorating Central Harlem &ndash; West 130th-132nd Streets Historic District.</p></ul>
+</div>
+                                                  
+									</div>     
+                                              
+                                           
+                                                                          <div class="slide" data-bg-color="#0a5796">
+										<div class="img-container">   
+                                                                                                <img class="rsImg" src="/assets/lpc/images/content/hero/LP-2000-Empire-State-Building-by-Meghan-DeVito-9-28-2023.jpg
+                                           " alt="Aerial photo of Manhattan skyline with Empire State Building in the foreground
+                                           "/> <!-- end img tag -->
+											<div class="bg-gradient"></div>
+										</div> <!-- end img-container-->
+                                                <div class="richtext">
+<h2 class="hero-title"><a class="arrow-link arrow-link-white inline" href="/site/lpc/about/pr2025/lpc-advances-key-initiatives-to-support-economic-growth.page">LPC Advanced Key Initiatives in 2025</a></h2>
+<p>
+<a class="read-more" href="/site/lpc/about/pr2025/lpc-advances-key-initiatives-to-support-economic-growth.page"></a>
+</p>
+</div>
+<div class="module module-stats">
+<span class="stats-title">Learn More</span>
+<!--Need clearfix to get all characters to display desktop-->
+<ul class="clearfix"><p>LPC released a list of agency accomplishments, including key initiatives to support economic growth, housing creation, and improve efficiency, transparency, and accessibility of agency processes.</p></ul>
+</div>
+                                                  
+									</div>     
+                                              
+                                           
+                                                                          <div class="slide" data-bg-color="#0a5796">
+										<div class="img-container">   
+                                                                                                <img class="rsImg" src="/assets/lpc/images/content/hero/Beverley-Square-West-Historic-District-Ditmas-Park-West-Historic-District-hero.jpg
+                                           " alt="Two side by side color photos of streetscapes, each showing a block with distinctive, free-standing homes
+                                           "/> <!-- end img tag -->
+											<div class="bg-gradient"></div>
+										</div> <!-- end img-container-->
+                                                <div class="richtext">
+<h2 class="hero-title"><a class="arrow-link arrow-link-white inline" href="/site/lpc/about/pr2025/lpc-designates-two-new-historic-districts-in-flatbush.page">LPC Designates Two New Historic Districts in Brooklyn</a></h2>
+<p>
+<a class="read-more" href="/site/lpc/about/pr2025/lpc-designates-two-new-historic-districts-in-flatbush.page"></a>
+</p>
+</div>
+<div class="module module-stats">
+<span class="stats-title">Learn More</span>
+<!--Need clearfix to get all characters to display desktop-->
+<ul class="clearfix"><p>Today, LPC voted to designate two new historic districts in Flatbush: Beverley Square West Historic District and Ditmas Park West Historic District.</p></ul>
+</div>
+                                                  
+									</div>     
+                                              
+                                           
+                                                                          <div class="slide" data-bg-color="#0a5796">
+										<div class="img-container">   
+                                                                                                <img class="rsImg" src="/assets/lpc/images/content/hero/addisleigh-park-historic-district.jpg
+                                           " alt="Photo of smiling people standing next to a marker 
+                                           "/> <!-- end img tag -->
+											<div class="bg-gradient"></div>
+										</div> <!-- end img-container-->
+                                                <div class="richtext">
+<h2 class="hero-title"><a class="arrow-link arrow-link-white inline" href="/site/lpc/about/pr2025/lpc-unveils-new-historic-district-markers-commemorating-addisleigh-park-historic-distring-in-queens-20251124.page">Commemorating Addisleigh Park Historic District in Queens</a></h2>
+<p>
+<a class="read-more" href="/site/lpc/about/pr2025/lpc-unveils-new-historic-district-markers-commemorating-addisleigh-park-historic-distring-in-queens-20251124.page"></a>
+</p>
+</div>
+<div class="module module-stats">
+<span class="stats-title">Learn More</span>
+<!--Need clearfix to get all characters to display desktop-->
+<ul class="clearfix"><p>LPC joined State Senator Comrie, Assemblymember Hyndman, Councilmember Williams, NYLPF, HDC, and Addisleigh Park Civic Organization to unveil new markers honoring Addisleigh Park Historic District.</p></ul>
+</div>
+                                                  
+									</div>     
+                                              
+                                           
+                                                                          <div class="slide" data-bg-color="#0a5796">
+										<div class="img-container">   
+                                                                                                <img class="rsImg" src="/assets/lpc/images/content/pr/box-crop-3-homepage-hero.jpg
+                                           " alt="Photo of three historic brownstone homes, each with stairs leading up to the front door
+                                           "/> <!-- end img tag -->
+											<div class="bg-gradient"></div>
+										</div> <!-- end img-container-->
+                                                <div class="richtext">
+<h2 class="hero-title"><a class="arrow-link arrow-link-white inline" href="/site/lpc/about/pr2025/lpc-awards-new-grants-to-landmark-buildings-citywide.page">LPC Announces New Grant Awards and Completion of Earlier Grant-Funded Work</a></h2>
+<p>
+<a class="read-more" href="/site/lpc/about/pr2025/lpc-awards-new-grants-to-landmark-buildings-citywide.page"></a>
+</p>
+</div>
+<div class="module module-stats">
+<span class="stats-title">Learn more</span>
+<!--Need clearfix to get all characters to display desktop-->
+<ul class="clearfix"><p>LPC today announced three new grants provided through its Historic Preservation Grant Program, and announced that grant-funded restoration work is officially complete on several designated properties citywide, including three properties in Brooklyn&rsquo;s Alice and Agate Courts Historic District.</p></ul>
+</div>
+                                                  
+									</div>     
+                                              </div>
+<ul class="flex-direction-nav">
+<li>
+<a class="slider-prev" href="#">Previous</a>
+</li>
+<li>
+<a class="slider-next" href="#">Next</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div><div class="clear-fix"></div>
+</div>
+<!--ls:end[component-1459807949430]-->
+</div>
+<div class="ls-cmp-wrap" id="w1459807949434">
+<!--ls:begin[component-1459807949434]-->
+<div class="iw_component" id="1459807949434"><div class="row bg-highlighted">
+<div class="row">
+<div class="container">
+<div class="module module-agency-columns">
+<div class="span4 agencies-first">
+<div class="agencies-index-panel agencies-no-scrolling text-padding"><h4>Discover NYC Landmarks</h4>
+<div class="row img-row">
+	<div class="span12"><a href="https://experience.arcgis.com/experience/fa1bcaad31374a88839da3f0166e640a/"><img src="/assets/lpc/images/content/pages/Discover-NYC-Landmarks-2025.jpg" alt="Discover NYC Landmarks" /></a></div>
+</div>
+<a href="https://experience.arcgis.com/experience/fa1bcaad31374a88839da3f0166e640a/" class="btn btn-form-submit">Go</a>
+<hr />
+<h4>Permit Application Finder</h4>
+<div class="row img-row">
+	<div class="span12"><a href="https://nyclpc.maps.arcgis.com/apps/webappviewer/index.html?id=0fe68c3ab3dc4bcabf45ef9276956dac"><img src="/assets/lpc/images/content/home-page/permit-application-map-finder.jpg" alt="Permit Application Finder Map" /></a></div>
+</div>
+<a href="https://nyclpc.maps.arcgis.com/apps/webappviewer/index.html?id=0fe68c3ab3dc4bcabf45ef9276956dac" class="btn btn-form-submit">Go</a>
+<hr />
+<h4>LPC Designation Reports</h4>
+<a href="/site/lpc/designations/designation-reports.page" class="btn btn-form-submit">Go</a></div>
+</div>
+<div class="span4 agencies-second">
+<div class="agencies-index-panel scroll-pane text-padding"><h4>Upcoming Public Hearings</h4>
+<p><a href="/assets/lpc/downloads/pdf/calendar/04_14_26.pdf">April 14, 2026</a><br />Public Hearing/Meeting<br />Public Viewing<br />April 10, 2026<br /></p>
+<p><a href="/assets/lpc/downloads/pdf/calendar/04_07_26.pdf">April 7, 2026</a><br />Public Hearing/Meeting<br />Public Viewing<br />April 3, 2026<br /></p>
+<p><a href="/assets/lpc/downloads/pdf/calendar/03_24_26.pdf">March 24, 2026</a><br />Public Hearing/Meeting<br />Public Viewing<br />March 20, 2026<br /></p>
+<p><a href="/assets/lpc/downloads/pdf/calendar/03_17_26.pdf">March 17, 2026</a><br />Public Hearing/Meeting<br />Public Viewing<br />March 13, 2026<br /></p>
+<p><a href="/assets/lpc/downloads/pdf/calendar/03_10_26.pdf">March 10, 2026</a> <br />Public Hearing/Meeting <br />Public Viewing <br />March 6, 2026</p>
+<p><a href="/assets/lpc/downloads/pdf/calendar/02_24_26.pdf">February 24, 2026</a> <br />Public Hearing/Meeting <br />Public Viewing <br />February 20, 2026</p>
+<p><a href="/assets/lpc/downloads/pdf/calendar/02_10_26.pdf">February 10, 2026</a><br />Public Hearing/Meeting<br />Public Viewing<br />February 6, 2026</p>
+<p><a href="/assets/lpc/downloads/pdf/calendar/02_03_26.pdf">February 3, 2026</a><br />Public Hearing/Meeting<br />Public Viewing<br />January 30, 2026</p>
+<p><a href="/assets/lpc/downloads/pdf/calendar/01_27_26.pdf">January 27, 2026</a><br />Public Hearing/Meeting <br />Public Viewing <br />January 23, 2026</p>
+<p><a href="/assets/lpc/downloads/pdf/calendar/01_13_26.pdf">January 13, 2026</a><br />Public Hearing/Meeting <br />Public Viewing <br />January 9, 2026</p>
+<p><a href="/assets/lpc/downloads/pdf/calendar/01_06_26.pdf">January 6, 2026</a><br />Public Hearing/Meeting <br />Public Viewing<br />January 2, 2026</p>
+<hr />
+<p><a href="/site/lpc/hearings/view-presentation-materials.page">View Presentation Materials</a></p>
+<hr />
+<p><a href="/site/lpc/hearings/hearings.page">View Hearing Calendar and Actions</a></p></div>
+<div class="agencies-border"></div>
+</div>
+<div class="span4 agencies-third">
+<div class="agencies-index-panel scroll-pane text-padding"><h4>Quick Links</h4>
+<ul class="agencies-index-ul" style="display: block;">
+<li><a href="/site/lpc/applications/apply.page">Apply on Portico</a></li>
+<li><a href="/site/lpc/applications/permit-application-guide.page">LPC Permit Guidebook</a></li>
+<li><a href="/site/lpc/applications/permit-search.page">Permit Application Search</a></li>
+<li><a class="exitlink" href="https://www.youtube.com/user/nyclpc/videos">Public Hearing/Meeting Videos</a></li>
+<li><a href="/site/lpc/hearings/decisions.page">Commission Decisions</a></li>
+<li><a href="/site/lpc/applications/lpc-business-express.page">LPC Business Express Service</a></li>
+<li><a href="/site/lpc/violations/violations.page">Violations</a></li>
+<li><a href="/site/lpc/about/archaeology.page">Archaeology</a></li>
+<li><a href="/site/lpc/applications/storefronts.page">Storefronts</a></li>
+<li><a href="/site/lpc/about/website-accessibility-statement.page">Website Accessibility Statement</a></li>
+<li><a href="/site/lpc/about/forms.page">Forms</a></li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--ls:end[component-1459807949434]-->
+</div>
+<div class="ls-cmp-wrap" id="w1459807949431">
+<!--ls:begin[component-1459807949431]-->
+<div class="iw_component" id="1459807949431">
+</div>
+<!--ls:end[component-1459807949431]-->
+</div>
+<div class="ls-cmp-wrap" id="w1459807949436">
+<!--ls:begin[component-1459807949436]-->
+<div class="iw_component" id="1459807949436"><xmp id='exceptionStackTrace' style='display:none;'>There was an error - check the logs for details</xmp></div>
+<!--ls:end[component-1459807949436]-->
+</div>
+<div class="ls-cmp-wrap" id="w1459807949432">
+<!--ls:begin[component-1459807949432]-->
+<div class="iw_component" id="1459807949432"><div class="row">
+<div class="container clearfix">
+<div class="module module-stay-connected clearfix">
+<div class="module-header">
+<h2 class="mod-title">Programs and Initiatives</h2>
+</div>
+<div class="module-content span12">
+<!--DJ: Render each row -->
+<div class="row span12">
+<!--start row -->
+<!--DJ: Call template for each item  -->
+<!--DJ: Render each div cell -->
+<div class="span3">
+<div class="content-info">
+<a href="/site/lpc/applications/permit-application-guide.page" target="_self" class="img-link"><img src="/assets/lpc/images/content/generic-content/permit-guidebook-2025.jpg" alt="LPC Permit Guidebook 2025"></a>
+<div class="content-info-inner"><h4>LPC Permit Guidebook</h4>
+<p>This new guide makes it easier to apply for and more quickly obtain a permit</p></div>
+</div>
+</div>
+<!--DJ: Render each div cell -->
+<div class="span3">
+<div class="content-info">
+<a href="https://experience.arcgis.com/experience/787cf87e6c52439bad2dde32d19775d1/page/HOME/#data_s=id%3AdataSource_108-18ef7c31222-layer-52%3A5" target="_self" class="img-link"><img src="/assets/lpc/images/content/generic-content/brooklyn-town-circa-1646.jpg" alt="stylized historic map with text &ldquo;Brooklyn Town circa 1646&rdquo;"></a>
+<div class="content-info-inner"><p><strong>More Than A Brook: Brooklyn Abolitionist Heritage Walk</strong></p>
+<p>This interactive audio tour explores Brooklyn&rsquo;s rich abolitionist heritage through stories of significant abolitionists and historic sites associated with them.</p></div>
+</div>
+</div>
+<!--DJ: Render each div cell -->
+<div class="span3">
+<div class="content-info">
+<a href="http://archaeology.cityofnewyork.us/" target="_self" class="img-link"><img src="/assets/lpc/images/content/home-page/archaeology-repository480.jpg" alt="NYC Archaeological Repository"></a>
+<div class="content-info-inner"><h4>NYC Archaeological Repository</h4>
+<p>Learn about NYC&rsquo;s archaeology on this interactive site dedicated to unearthing our past.</p></div>
+</div>
+</div>
+<!--DJ: Render each div cell -->
+<div class="span3">
+<div class="content-info">
+<a href="https://www1.nyc.gov/site/lpc/applications/lpc-business-express.page" target="_self" class="img-link"><img src="/assets/lpc/images/content/generic-content/Business-Express-Program.jpg" alt="LPC Business Express Service"></a>
+<div class="content-info-inner"><h4>LPC Business Express Service</h4>
+<p>LPC Business Express serves as a one-stop shop for business owners in landmark buildings making it easier for them to get their permits.</p></div>
+</div>
+</div>
+</div>
+<!--end row -->
+<!--DJ: Render each row -->
+<div class="row span12">
+<!--start row -->
+<!--DJ: Call template for each item  -->
+<!--DJ: Render each div cell -->
+<div class="span3">
+<div class="content-info">
+<a href="http://www1.nyc.gov/site/lpc/about/historic-preservation-grant-program.page" target="_self" class="img-link"><img src="/assets/lpc/images/content/home-page/historic-preservation-grants.jpg" alt="Historic Preservation Grants from LPC"></a>
+<div class="content-info-inner"><h4>Historic Preservation Grants from LPC</h4>
+<p>LPC provides fa&ccedil;ade restoration grants to non-profits and income-eligible property owners.</p></div>
+</div>
+</div>
+<!--DJ: Render each div cell -->
+<div class="span3">
+<div class="content-info">
+<a href="http://www1.nyc.gov/site/lpc/applications/technical-resources.page" target="_self" class="img-link"><img src="/assets/lpc/images/content/home-page/Technical-Resources.jpg" alt="Technical Resources"></a>
+<div class="content-info-inner"><h4>Technical Resources</h4>
+<p>Do you own a historic building? These manuals and fact sheets will provide technical assistance.</p></div>
+</div>
+</div>
+<!--DJ: Render each div cell -->
+<div class="span3">
+<div class="content-info">
+<a href="/site/lpc/discover/digital-photo-archive.page" target="_self" class="img-link"><img src="/assets/lpc/images/content/home-page/Digital-Photo-Archive-Programs.jpg" alt="Digital Photo Archive"></a>
+<div class="content-info-inner"><h4>Digital Photo Archive</h4>
+<p>The LPC Designation Photo Collection, a digital photo archive of New York City&rsquo;s designated landmarks and historic districts, allows the public to easily search and explore high-resolution images of designated buildings and sites throughout the five boroughs.</p></div>
+</div>
+</div>
+<!--DJ: Render each div cell -->
+<div class="span3">
+<div class="content-info">
+<a href="http://www1.nyc.gov/site/lpc/discover/discover.page" target="_self" class="img-link"><img src="/assets/lpc/images/content/home-page/discover-nyc480.jpg" alt="Discover NYC Landmarks"></a>
+<div class="content-info-inner"><h4>Discover NYC Landmarks</h4>
+<p>Walking tours, image galleries, &amp; interactive features to help you explore the history of NYC.</p></div>
+</div>
+</div>
+</div>
+<!--end row -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--ls:end[component-1459807949432]-->
+</div>
+<div class="ls-cmp-wrap" id="w1642619351778">
+<!--ls:begin[component-1642619351778]-->
+<div class="iw_component" id="1642619351778">
+</div>
+<!--ls:end[component-1642619351778]-->
+</div>
+</div>
+</div>
+<div class="ls-row-clr"></div>
+</div>
+</div>
+<div class="ls-row" id="ls-row-1-col-1-row-3">
+<div class="ls-fxr" id="ls-gen77353736-ls-fxr">
+<div class="ls-area" id="ls-row-1-col-1-row-3-area-1">
+<div class="ls-area-body" id="ls-gen77353737-ls-area-body">
+<div class="ls-cmp-wrap ls-1st" id="w1459807949435">
+<!--ls:begin[component-1459807949435]-->
+<div class="iw_component" id="1459807949435"><div class="row">
+<footer>
+<div class="container">
+<div class="span9 footer-links">
+<a href="/main">nyc.gov home</a><a href="/main/services">Services</a><a href="/main/events/?">Events</a><a href="/main/your-government">Your government</a><a href="https://portal.311.nyc.gov/">311</a><a href="/main/your-government/contact-nyc-government">Contact NYC government</a><a href="https://www.nycvotes.org/">Register to vote</a><a href="https://a858-nycnotify.nyc.gov/notifynyc/">Emergency alerts </a><a href="https://cityjobs.nyc.gov/">Careers</a><a href="/main/forms/website-feedback">Website feedback</a><a href="https://www.nyc.gov/site/mopd/resources/digital-accessibility.page">Accessibility resources</a><a href="/main/nyc-gov-privacy-policy">Privacy policy</a><a href="/main/terms-of-use">Terms of use</a><a href="/main/about-our-content">About nyc.gov content</a>
+</div>
+<div class="span3">
+<span class="logo-nyc">NYC</span>
+<form class="form-search" method="get" action="/home/search/index.page">
+<label for="footer-search" class="sr-only">Search</label><input id="footer-search" type="text" placeholder="Search" class="input-search placeholder" name="search-terms"><button class="ico-search">Search</button>
+</form>
+<div class="copyright">
+<div><p>&copy; City of New York. 2025 All Rights Reserved. NYC is a trademark and service mark of the City of New York.</p>
+<!-- nyc footer 07-16-2025 --></div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</div>
+<!--ls:end[component-1459807949435]-->
+</div>
+</div>
+</div>
+<div class="ls-row-clr"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ls-row-clr"></div>
+</div>
+</div>
+</div><!--ls:end[body]--><!--ls:begin[page_track]--><!--ls:end[page_track]--></body>
+<!--ls:begin[foot-injection]--><!-- GLOBAL JAVASCRIPT INCLUDES (/js/_global.js.html.erb) --><script src="/assets/home/js/libs/jquery-1.9.1.js" type="text/javascript"></script><script src="/assets/home/js/libs/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script><script src="/assets/home/js/libs/i18n/jquery-ui-i18n.js" type="text/javascript"></script><script src="/assets/home/js/utils.js" type="text/javascript"></script><script src="/assets/home/js/libs/class.js" type="text/javascript"></script><script src="/assets/home/js/classes/NYC.MainNav.js" type="text/javascript"></script><script src="/assets/home/js/classes/NYC.MobileNav.js" type="text/javascript"></script><script src="/assets/home/js/classes/NYC.Global.js" type="text/javascript"></script><script src="/assets/home/js/libs/ZeroClipboard.min.js" type="text/javascript"></script><script src="/assets/home/js/classes/NYC.InfoShare.js" type="text/javascript"></script><script src="/assets/home/js/classes/NYC.ProgramsAndInitiatives.js" type="text/javascript"></script><script src="/assets/home/js/libs/jquery.colorbox-min.js" type="text/javascript"></script><!-- IE7 support for JSON --><!--[if (gte IE 6)&(lte IE 8)]>        <script src="/assets/home/js/libs/json2.js" type="text/javascript"></script>        <![endif]--><!-- PAGE SPECIFIC JAVASCRIPT --><script src="/assets/home/js/libs/mustache.js" type="text/javascript"></script><script src="/assets/home/js/libs/handlebars.js" type="text/javascript"></script><script src="/assets/home/js/libs/jquery.center.js" type="text/javascript"></script><script src="/assets/home/js/libs/jquery.customSelect.js" type="text/javascript"></script><script src="/assets/home/js/libs/jquery.royalslider.min.js" type="text/javascript"></script><script src="/assets/home/js/libs/jquery.rs.autoplay.js" type="text/javascript"></script><script src="/assets/home/js/libs/jQuery.tubeplayer.min.js" type="text/javascript"></script><script src="/assets/home/js/classes/NYC.VideoPlayer.js" type="text/javascript"></script><script src="/assets/home/js/libs/jquery.ui.touch-punch.min.js" type="text/javascript"></script><script src="/assets/home/js/libs/jquery.touchSwipe.js" type="text/javascript"></script><script src="/assets/home/js/classes/NYC.Status.js" type="text/javascript"></script><script src="/assets/home/js/classes/NYC.StatusUpdate.js" type="text/javascript"></script><script src="/assets/home/js/classes/NYC.LoadJSTemplate.js" type="text/javascript"></script><script src="/assets/home/js/classes/NYC.DatePicker.js" type="text/javascript"></script><script src="/assets/home/js/classes/NYC.HeroSlideshow.js" type="text/javascript"></script><!--<script src="/assets/home/js/pages/agencies/index.js" type="text/javascript"></script>--><script src="/assets/home/js/pages/agencies/index.js" type="text/javascript"></script><script src="/assets/home/js/libs/jquery.easing.1.3.js" type="text/javascript"></script><script src="/assets/home/js/share.js" type="text/javascript"></script><script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script><!-- Google Translate Plugin --><script type="text/javascript">            function googleTranslateElementInit() {                new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');            }        </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><!-- webtrends --><script type="text/javascript" src="/assets/lpc/js/agencies/agency-wt.js"></script><script type="text/javascript" src="/assets/home/js/webtrends/webtrends_v10.js"></script><!-- End Analytics Tagging 8/4/14 TL. (NYC.gov Specific) --><!--ls:end[foot-injection]--></html></html>
