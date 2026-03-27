@@ -49,10 +49,6 @@ class RSSArticleItem(BaseScrapeItem):
         default=None,
         description="Additional metadata from the source (optional)"
     )
-    source_metadata: Optional[dict] = Field(
-        default=None,
-        description="Additional metadata from the source (optional)"
-    )
     
     def can_produce_headline(self) -> bool:
         """
