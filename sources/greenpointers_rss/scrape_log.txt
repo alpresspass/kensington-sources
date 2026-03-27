@@ -472,3 +472,15 @@ source_metadata
 2026-03-27 00:13:26,671 INFO: Found 10 Kensington-relevant items
 2026-03-27 00:13:26,678 INFO: Saved 0 items to /Users/al/.openclaw/workspace/kensington-sources/sources/greenpointers_rss/scrape_items
 2026-03-27 00:13:26,678 INFO: Scraping complete. Saved 0 new items.
+2026-03-27 00:19:38,295 INFO: Starting greenpointers_rss scraper
+2026-03-27 00:19:38,296 INFO: Scraping last full day: 2026-03-26
+2026-03-27 00:19:38,296 INFO: Fetching RSS feed from https://greenpointers.com/feed
+2026-03-27 00:19:40,236 INFO: Found 10 Kensington-relevant items
+2026-03-27 00:19:40,244 INFO: Saved 0 items to /Users/al/.openclaw/workspace/kensington-sources/sources/greenpointers_rss/scrape_items
+2026-03-27 00:19:40,244 INFO: Scraping complete. Saved 0 new items.
+2026-03-27 00:21:42,868 INFO: Starting greenpointers_rss scraper
+2026-03-27 00:21:42,869 INFO: Scraping last full day: 2026-03-26
+2026-03-27 00:21:42,869 INFO: Fetching RSS feed from https://greenpointers.com/feed
+2026-03-27 00:21:44,647 INFO: Found 10 Kensington-relevant items
+2026-03-27 00:21:44,654 INFO: Saved 0 items to /Users/al/.openclaw/workspace/kensington-sources/sources/greenpointers_rss/scrape_items
+2026-03-27 00:21:44,654 INFO: Scraping complete. Saved 0 new items.
