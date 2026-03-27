@@ -3,13 +3,15 @@
 Scrape NYC DOB Building Permit data filtered for Kensington area.
 
 NYC Open Data source:
-https://data.cityofnewyork.us/Housing-Development/DOB-Permit-Issuance/ipu4-2q9a
+https://data.cityofnewyork.us/Housing-Development/DOB-NOW-Build-Approved-Permits/rbx6-tga4
 
+This dataset has REAL-TIME data with current permits issued today/yesterday.
 Uses CSV endpoint (more reliable than JSON API).
 """
 
 import argparse
 import csv
+import json
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import List
@@ -23,7 +25,9 @@ from models.building_permit import BuildingPermitItem
 
 
 # Kensington area streets (most reliable filter)
+# Includes main Kensington streets + surrounding area relevant to 11218 zip code
 KENNSINGTON_STREETS = [
+    # Main Kensington streets
     "KENSINGTON AVENUE",
     "MYRTLE AVENUE", 
     "MANHATTAN AVE",
@@ -31,10 +35,19 @@ KENNSINGTON_STREETS = [
     "BUSHWICK AVE",
     "STANTON STREET",
     "MORRIS AVE",
+    # Surrounding area streets
+    "NASSAU STREET",
+    "FLATLANDS AVENUE",
+    "DEKalb AVENUE",
+    "NOBLE STREET",
+    "HALSEY STREET",
+    "CORNELIA STREET",
+    "MORRIS PARK AVE",
+    "BUSHWICK PLACE",
 ]
 
-# NYC Open Data CSV endpoint (more reliable than JSON API)
-CSV_URL = "https://data.cityofnewyork.us/resource/ipu4-2q9a.csv"
+# NYC Open Data CSV endpoint - REAL-TIME dataset!
+CSV_URL = "https://data.cityofnewyork.us/resource/rbx6-tga4.csv"
 
 
 def is_in_kensington_area(street_name: str) -> bool:
@@ -53,9 +66,10 @@ def fetch_permits_for_date(target_date: date) -> List[BuildingPermitItem]:
     Fetch building permits for a specific date.
     
     Downloads full CSV and filters by Brooklyn + Kensington streets in Python.
+    Uses rbx6-tga4 dataset which has REAL-TIME data (not historical like ipu4-2q9a).
     """
-    # Format date as NYC Open Data expects (MM/DD/YYYY)
-    target_date_str = target_date.strftime("%m/%d/%Y")
+    # Format date as NYC Open Data expects (YYYY-MM-DD)
+    target_date_str = target_date.strftime("%Y-%m-%d")
     
     permits = []
     brooklyn_count = 0
@@ -85,15 +99,15 @@ def fetch_permits_for_date(target_date: date) -> List[BuildingPermitItem]:
                 continue
             kensington_count += 1
             
-            # Check issuance date matches target
-            issuance_date = row.get("issuance_date", "")
-            if issuance_date != target_date_str:
+            # Check issued date matches target (format: YYYY-MM-DD)
+            issued_date = row.get("issued_date", "")
+            if issued_date != target_date_str:
                 continue
             
             try:
                 permit = BuildingPermitItem(
-                    permit_number=row.get("job_doc___", ""),  # job_doc__ is the permit number
-                    job_type=row.get("job_type", ""),
+                    permit_number=row.get("job_filing_number", ""),  # job_filing_number is the permit number
+                    job_type=row.get("work_type", ""),
                     building_class=None,  # Not in this dataset
                     block=int(row["block"]) if row.get("block") else 0,
                     lot=int(row["lot"]) if row.get("lot") else 0,
@@ -159,8 +173,6 @@ def log_scrape(target_date: date, count: int, success: bool = True) -> None:
     """
     Log the scrape operation.
     """
-    import json  # Import here for save_permits function
-    
     log_file = Path(__file__).parent / "scrape_log.txt"
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     status = "SUCCESS" if success else "FAILED"

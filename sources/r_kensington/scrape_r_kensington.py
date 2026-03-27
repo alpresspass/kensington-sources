@@ -1,82 +1,106 @@
 #!/usr/bin/env python3
 """
-Scrape r/Kensington subreddit for local news and discussions.
+Scrape Reddit posts from Brooklyn neighborhood subreddits relevant to Kensington.
 
-Reddit API: https://www.reddit.com/dev/api/
-No authentication needed for reading public posts.
+Note: r/kensington is for London, not Brooklyn! We use:
+- r/Brooklyn (main Brooklyn subreddit)
+- r/Greenpoint (nearby neighborhood)  
+- r/Bushwick (adjacent to Kensington)
 """
 
 import argparse
 import json
 from datetime import date, datetime, timedelta
 from pathlib import Path
-from typing import List, Optional
+from typing import List
 import sys
 import urllib.request
-import urllib.parse
+import time
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from models.subreddit_post import SubredditPostItem
 
-
-SUBREDDIT = "kensington"
-API_URL = f"https://www.reddit.com/r/{SUBREDDIT}/hot.json?limit=100"
-
+# Brooklyn neighborhood subreddits relevant to Kensington area (11218)
+BROOKLYN_SUBREDDITS = [
+    "Brooklyn",      # Main Brooklyn subreddit - most active
+    "Greenpoint",    # Nearby neighborhood, often covers Kensington
+    "Bushwick",      # Adjacent to Kensington
+]
 
 def fetch_posts_for_date(target_date: date) -> List[SubredditPostItem]:
     """
-    Fetch posts from r/Kensington.
+    Fetch Reddit posts from Brooklyn subreddits for a specific date.
     
-    Reddit's API doesn't have a great way to filter by exact date,
-    so we fetch hot/new posts and filter client-side.
+    Uses Reddit's public JSON API (no authentication needed for hot/new posts).
+    Filters by date in Python since Reddit doesn't support date filtering.
     """
-    try:
-        print(f"Fetching posts from r/{SUBREDDIT}...")
-        
-        with urllib.request.urlopen(API_URL, timeout=10) as response:
-            data = json.loads(response.read().decode('utf-8'))
-        
-        # Extract posts from the JSON structure
-        posts_data = data.get("data", {}).get("children", [])
-        
-        posts = []
-        target_date_str = target_date.strftime("%Y-%m-%d")
-        today_midnight = datetime.combine(target_date, datetime.min.time())
-        yesterday_midnight = today_midnight - timedelta(days=1)
-        
-        for child in posts_data:
-            post_data = child.get("data", {})
-            created_utc = post_data.get("created_utc", 0)
-            post_datetime = datetime.fromtimestamp(created_utc, tz=None)
+    # Convert target_date to Unix timestamp boundaries
+    start_dt = datetime(target_date.year, target_date.month, target_date.day)
+    end_dt = start_dt + timedelta(days=1)
+    start_ts = int(start_dt.timestamp())
+    end_ts = int(end_dt.timestamp())
+    
+    all_posts: List[SubredditPostItem] = []
+    total_fetched = 0
+    
+    for subreddit in BROOKLYN_SUBREDDITS:
+        try:
+            print(f"Fetching from r/{subreddit}...")
+            url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=50"
             
-            # Filter by date (last 48 hours to catch recent posts)
-            if not (yesterday_midnight - timedelta(hours=24) <= post_datetime < today_midnight + timedelta(days=1)):
-                continue
+            with urllib.request.urlopen(url, timeout=30) as response:
+                data = json.loads(response.read().decode('utf-8'))
             
-            try:
-                post = SubredditPostItem(
-                    id=post_data.get("id", ""),
-                    title=post_data.get("title", ""),
-                    author=post_data.get("author", ""),
-                    subreddit=SUBREDDIT,
-                    url=post_data.get("url", ""),
-                    permalink=f"/r/{SUBREDDIT}/comments/{post_data.get('id', '')}/{post_data.get('title', '').lower().replace(' ', '_')}/",
-                    score=post_data.get("score", 0),
-                    num_comments=post_data.get("num_comments", 0),
-                    created_utc=created_utc,
-                    selftext=post_data.get("selftext", "")[:500] if post_data.get("selftext") else None,  # Truncate
-                )
-                posts.append(post)
-            except Exception as e:
-                continue
-        
-        return posts
-        
-    except Exception as e:
-        print(f"Error fetching posts: {e}", file=sys.stderr)
-        return []
+            posts_data = data.get("data", {}).get("children", [])
+            total_fetched += len(posts_data)
+            
+            for post_data in posts_data:
+                try:
+                    # Filter by date (created_utc is Unix timestamp)
+                    created_ts = int(post_data["data"]["created_utc"])
+                    if not (start_ts <= created_ts < end_ts):
+                        continue
+                    
+                    # Check if post mentions Kensington area keywords
+                    title_lower = post_data["data"].get("title", "").lower()
+                    selftext_lower = post_data["data"].get("selftext", "").lower() or ""
+                    combined_text = title_lower + " " + selftext_lower
+                    
+                    # Keywords that might indicate Kensington relevance
+                    kensington_keywords = [
+                        "kensington", "myrtle avenue", "manhattan ave", 
+                        "new york ave", "bushwick ave", "11218"
+                    ]
+                    is_kensington_related = any(kw in combined_text for kw in kensington_keywords)
+                    
+                    post_item = SubredditPostItem(
+                        title=post_data["data"].get("title", ""),
+                        author=post_data["data"].get("author", ""),
+                        subreddit=f"r/{subreddit}",
+                        url=f"https://www.reddit.com{post_data['data'].get('permalink', '')}",
+                        created_at=datetime.fromtimestamp(created_ts),
+                        score=post_data["data"].get("score", 0),
+                        num_comments=post_data["data"].get("num_comments", 0),
+                        selftext=post_data["data"].get("selftext", "") or "",
+                        is_kensington_related=is_kensington_related,
+                    )
+                    all_posts.append(post_item)
+                    
+                except (KeyError, ValueError) as e:
+                    continue  # Skip malformed posts
+            
+            # Rate limit protection
+            time.sleep(1.5)
+            
+        except Exception as e:
+            print(f"Error fetching r/{subreddit}: {e}", file=sys.stderr)
+            continue
+    
+    print(f"Total posts fetched: {total_fetched}")
+    print(f"Posts from target date ({target_date}): {len(all_posts)}")
+    return all_posts
 
 
 def save_posts(posts: List[SubredditPostItem], target_date: date, output_dir: Path) -> None:
@@ -88,20 +112,19 @@ def save_posts(posts: List[SubredditPostItem], target_date: date, output_dir: Pa
     date_folder.mkdir(parents=True, exist_ok=True)
     
     # Save as JSON
-    output_file = date_folder / f"r_kensington_{target_date.strftime('%Y-%m-%d')}.json"
+    output_file = date_folder / f"reddit_posts_{target_date.strftime('%Y-%m-%d')}.json"
     
     posts_data = [
         {
-            "id": p.id,
             "title": p.title,
             "author": p.author,
             "subreddit": p.subreddit,
             "url": p.url,
-            "permalink": p.permalink,
+            "created_at": p.created_at.isoformat(),
             "score": p.score,
             "num_comments": p.num_comments,
-            "created_utc": p.created_utc,
             "selftext": p.selftext,
+            "is_kensington_related": p.is_kensington_related,
         }
         for p in posts
     ]
@@ -125,7 +148,7 @@ def log_scrape(target_date: date, count: int, success: bool = True) -> None:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Scrape r/Kensington subreddit")
+    parser = argparse.ArgumentParser(description="Scrape Reddit posts from Brooklyn subreddits")
     parser.add_argument("--date", type=str, help="Date to scrape (YYYY-MM-DD), default: today")
     parser.add_argument("--days-ago", type=int, default=0, help="Days ago from today")
     args = parser.parse_args()
@@ -136,12 +159,13 @@ def main():
     else:
         target_date = date.today() - timedelta(days=args.days_ago)
     
-    print(f"Scraping r/Kensington for {target_date}")
+    print(f"Scraping Reddit posts for {target_date}")
+    print(f"Subreddits: {', '.join(BROOKLYN_SUBREDDITS)}")
     
     # Fetch posts
     posts = fetch_posts_for_date(target_date)
     
-    print(f"Found {len(posts)} posts")
+    print(f"Found {len(posts)} posts from target date")
     
     if posts:
         # Save to file
@@ -149,11 +173,11 @@ def main():
         save_posts(posts, target_date, output_dir)
         
         # Show first few
-        for post in posts[:5]:
-            print(f"  - [{post.score} pts] {post.title}")
+        for post in posts[:5]:  # Show first 5
+            print(f"  - [{post.subreddit}] {post.title[:60]}... (score: {post.score})")
     
     # Log the operation
-    log_scrape(target_date, len(posts), success=True)
+    log_scrape(target_date, len(posts), success=len(posts) >= 0)
 
 
 if __name__ == "__main__":
