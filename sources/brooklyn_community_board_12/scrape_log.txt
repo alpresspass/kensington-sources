@@ -1,0 +1,5 @@
+# Brooklyn Community Board 12 Scraper Log
+# Format: [timestamp] message
+
+[2026-03-27 19:30:53 EDT] Source created - scraping CB12 meeting minutes and agendas
+[2026-03-27 19:30:53 EDT] Initial setup complete
