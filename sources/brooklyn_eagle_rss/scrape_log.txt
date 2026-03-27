@@ -1,0 +1,49 @@
+2026-03-26 19:50:43,386 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-26 19:50:43,386 INFO: Scraping last full day: 2026-03-25
+2026-03-26 19:50:43,386 INFO: Fetching RSS feed from https://brooklyneagle.com/feed
+2026-03-26 19:50:43,638 ERROR: Feed parse error: <unknown>:2:751: not well-formed (invalid token)
+2026-03-26 19:50:43,639 INFO: Found 0 Kensington-relevant items
+2026-03-26 19:50:43,639 INFO: No items to save
+2026-03-26 19:50:43,639 INFO: Scraping complete. Saved 0 new items.
+2026-03-26 19:52:20,149 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-26 19:52:20,149 INFO: Scraping last full day: 2026-03-25
+2026-03-26 19:52:20,149 INFO: Fetching RSS feed from https://brooklyneagle.com/feed
+2026-03-26 19:52:20,352 ERROR: Feed parse error: <unknown>:2:751: not well-formed (invalid token)
+2026-03-26 19:52:20,352 INFO: Found 0 Kensington-relevant items
+2026-03-26 19:52:20,352 INFO: No items to save
+2026-03-26 19:52:20,352 INFO: Scraping complete. Saved 0 new items.
+2026-03-26 20:12:41,853 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-26 20:12:41,854 INFO: Scraping from 2026-03-25 to 2026-03-26
+2026-03-26 20:12:41,854 INFO: Fetching RSS feed from https://brooklyneagle.com/feed
+2026-03-26 20:12:42,068 ERROR: Feed parse error: <unknown>:2:751: not well-formed (invalid token)
+2026-03-26 20:12:42,068 INFO: Found 0 Kensington-relevant items
+2026-03-26 20:12:42,068 INFO: No items to save
+2026-03-26 20:12:42,068 INFO: Scraping complete. Saved 0 new items.
+2026-03-26 20:14:53,260 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-26 20:14:53,260 INFO: Scraping from 2026-03-25 to 2026-03-26
+2026-03-26 20:14:53,260 INFO: Fetching RSS feed from https://brooklyneagle.com/feed
+2026-03-26 20:14:53,260 ERROR: Error fetching RSS feed: parse() got an unexpected keyword argument 'sanitize'
+2026-03-26 20:14:53,260 INFO: Found 0 Kensington-relevant items
+2026-03-26 20:14:53,260 INFO: No items to save
+2026-03-26 20:14:53,260 INFO: Scraping complete. Saved 0 new items.
+2026-03-26 20:16:38,987 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-26 20:16:38,987 INFO: Scraping from 2026-03-25 to 2026-03-26
+2026-03-26 20:16:38,988 INFO: Fetching RSS feed from https://brooklyneagle.com/feed
+2026-03-26 20:16:39,260 ERROR: Error fetching RSS feed: 403 Client Error: Forbidden for url: https://brooklyneagle.com/feed
+2026-03-26 20:16:39,264 INFO: Found 0 Kensington-relevant items
+2026-03-26 20:16:39,264 INFO: No items to save
+2026-03-26 20:16:39,264 INFO: Scraping complete. Saved 0 new items.
+2026-03-26 20:17:36,194 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-26 20:17:36,194 INFO: Scraping from 2026-03-25 to 2026-03-26
+2026-03-26 20:17:36,194 INFO: Fetching RSS feed from https://brooklyneagle.com/feed
+2026-03-26 20:17:36,515 ERROR: Error fetching RSS feed: 403 Client Error: Forbidden for url: https://brooklyneagle.com/feed
+2026-03-26 20:17:36,516 INFO: Found 0 Kensington-relevant items
+2026-03-26 20:17:36,516 INFO: No items to save
+2026-03-26 20:17:36,516 INFO: Scraping complete. Saved 0 new items.
+2026-03-26 20:30:40,633 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-26 20:30:40,634 INFO: Scraping from 2026-03-25 to 2026-03-26
+2026-03-26 20:30:40,634 INFO: Fetching RSS feed from https://brooklyneagle.com/feed
+2026-03-26 20:30:40,860 ERROR: Error fetching RSS feed: 403 Client Error: Forbidden for url: https://brooklyneagle.com/feed
+2026-03-26 20:30:40,862 INFO: Found 0 Kensington-relevant items
+2026-03-26 20:30:40,863 INFO: No items to save
+2026-03-26 20:30:40,863 INFO: Scraping complete. Saved 0 new items.

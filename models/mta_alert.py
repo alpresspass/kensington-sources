@@ -6,6 +6,7 @@ Used for scraping service status and alerts from MTA sources.
 
 from datetime import datetime
 from typing import Optional, List
+from pydantic import Field
 
 from .base import BaseScrapeItem
 

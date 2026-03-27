@@ -74,15 +74,37 @@ def parse_rss_feed():
                     except (TypeError, ValueError) as e:
                         logger.debug(f"Could not parse date: {e}")
                 
+                # Ensure all fields are proper types
+                item_id = str(entry.get("id") or entry.link)[:100]
+                title = str(entry.title) if entry.title else "Untitled"
+                link = str(entry.link)
+                summary_raw = entry.get("summary", "")
+                summary_str = str(summary_raw)[:2000] if summary_raw else None
+                author_raw = entry.get("author")
+                author_str = str(author_raw) if author_raw else "Greenpointers"
+                
+                # Handle categories safely - feedparser tags can be tuples or dicts
+                categories_list = []
+                if hasattr(entry, 'tags') and entry.tags:
+                    for tag in entry.tags:
+                        if isinstance(tag, dict):
+                            term = str(tag.get('term', ''))
+                            if term:
+                                categories_list.append(term)
+                        elif isinstance(tag, (list, tuple)) and len(tag) > 0:
+                            term = str(tag[0])
+                            if term:
+                                categories_list.append(term)
+                
                 item = RSSArticleItem(
-                    id=entry.get("id", entry.link)[:100],
-                    title=entry.title,
-                    link=entry.link,
-                    summary=entry.get("summary", "")[:2000] if entry.get("summary") else None,
+                    id=item_id,
+                    title=title,
+                    link=link,
+                    summary=summary_str,
                     content=None,  # Full content not needed for headlines
                     published_at=published_at or datetime.now(),
-                    author=entry.get("author", "Greenpointers"),
-                    categories=[tag.term for tag in entry.tags] if hasattr(entry, 'tags') else []
+                    author=author_str,
+                    categories=categories_list
                 )
                 
                 # Filter for Kensington relevance
@@ -119,16 +141,19 @@ def save_items(items, start_date=None, end_date=None):
         day_dir.mkdir(parents=True, exist_ok=True)
         
         # Filter items for this day
+        start_date_obj = datetime.strptime(start_date or date_str, "%Y-%m-%d").date()
+        end_date_obj = datetime.strptime(end_date or date_str, "%Y-%m-%d").date()
         day_items = [
             item for item in items
             if item.published_at and 
-               datetime.strptime(start_date or date_str, "%Y-%m-%d") <= item.published_at.date() <= 
-               datetime.strptime(end_date or date_str, "%Y-%m-%d")
+               start_date_obj <= item.published_at.date() <= end_date_obj
         ]
         
         # Save each item as separate JSON file
         for item in day_items:
-            filename = f"{SOURCE_NAME}_{date_str}_{item.id[:50]}.json"
+            # Sanitize filename - remove invalid characters
+            safe_id = item.id.replace(":", "_").replace("/", "-").replace("?", "_")
+            filename = f"{SOURCE_NAME}_{date_str}_{safe_id[:50]}.json"
             filepath = day_dir / filename
             
             if not filepath.exists():  # Only save new items

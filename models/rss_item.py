@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from .base import BaseScrapeItem, SourceMetadata
+from .base import BaseScrapeItem
 
 
 class RSSArticleItem(BaseScrapeItem):
@@ -44,6 +44,10 @@ class RSSArticleItem(BaseScrapeItem):
     categories: List[str] = Field(
         default=[],
         description="Categories/tags associated with the article"
+    )
+    source_metadata: Optional[dict] = Field(
+        default=None,
+        description="Additional metadata from the source (optional)"
     )
     
     def can_produce_headline(self) -> bool:

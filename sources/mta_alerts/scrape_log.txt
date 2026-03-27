@@ -14,3 +14,5 @@
 2026-03-26 19:17:34,517 INFO: Found 0 Kensington-relevant alerts
 2026-03-26 19:17:34,523 INFO: No items to save
 2026-03-26 19:17:34,523 INFO: Scraping complete. Saved 0 alerts.
+Scrape started: 2026-03-27T01:56:41.908593+00:00
+Scrape completed: 2026-03-27T01:56:42.338756+00:00 - No alerts

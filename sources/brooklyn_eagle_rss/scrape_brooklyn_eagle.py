@@ -57,10 +57,23 @@ def parse_rss_feed():
     logger.info(f"Fetching RSS feed from {RSS_URL}")
     
     try:
-        feed = feedparser.parse(RSS_URL)
-        if feed.bozo:
-            logger.error(f"Feed parse error: {feed.bozo_exception}")
-            return []
+        # Fetch raw content first for better control
+        import requests
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15',
+            'Accept': 'application/rss+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Referer': 'https://brooklyneagle.com/',
+        }
+        resp = requests.get(RSS_URL, headers=headers, timeout=10)
+        resp.raise_for_status()
+        
+        # Clean up common XML issues in Brooklyn Eagle feed
+        cleaned_content = resp.text
+        # Fix unescaped ampersands in URLs and text
+        cleaned_content = re.sub(r'(?<!&)&(?!amp;|lt;|gt;|quot;|apos;)', '&amp;', cleaned_content)
+        
+        feed = feedparser.parse(cleaned_content)
         
         items = []
         for entry in feed.entries[:50]:  # Limit to first 50 entries
@@ -112,11 +125,12 @@ def save_items(items, start_date=None, end_date=None):
         day_dir.mkdir(parents=True, exist_ok=True)
         
         # Filter items for this day
+        start_date_obj = datetime.strptime(start_date or date_str, "%Y-%m-%d").date()
+        end_date_obj = datetime.strptime(end_date or date_str, "%Y-%m-%d").date()
         day_items = [
             item for item in items
             if item.published_at and 
-               datetime.strptime(start_date or date_str, "%Y-%m-%d") <= item.published_at.date() <= 
-               datetime.strptime(end_date or date_str, "%Y-%m-%d")
+               start_date_obj <= item.published_at.date() <= end_date_obj
         ]
         
         # Save each item as separate JSON file

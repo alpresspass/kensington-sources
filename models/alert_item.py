@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from .base import BaseScrapeItem, SourceMetadata
+from .base import BaseScrapeItem
 
 
 class AlertItem(BaseScrapeItem):

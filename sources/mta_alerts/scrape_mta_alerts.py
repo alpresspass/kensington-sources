@@ -18,8 +18,8 @@ import os
 import sys
 import re
 
-# Add parent directory to path for imports
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add kensington-sources root to path for imports (parent of sources/)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from models.mta_alert import MTAAlert
 
@@ -36,7 +36,8 @@ KENSINGTON_RELEVANT_ROUTES = {
     'bus': ['B25', 'B46', 'B63', 'B67', 'B15', 'B8']
 }
 
-MTA_ALERTS_URL = "https://new.mta.info/schedules/service-alerts"
+# MTA GTFS-RT Alerts endpoint - provides real-time service alerts for all modes
+MTA_ALERTS_URL = "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fall-alerts.json"
 
 
 def parse_date_from_description(desc: str) -> datetime:
@@ -62,7 +63,7 @@ def parse_date_from_description(desc: str) -> datetime:
 
 def scrape_mta_alerts(start_date: datetime = None, end_date: datetime = None) -> list[MTAAlert]:
     """
-    Scrape current MTA service alerts.
+    Scrape current MTA service alerts from GTFS-RT feeds.
     
     Args:
         start_date: Start of date range (inclusive)
@@ -76,59 +77,101 @@ def scrape_mta_alerts(start_date: datetime = None, end_date: datetime = None) ->
     try:
         response = requests.get(MTA_ALERTS_URL, timeout=30)
         response.raise_for_status()
+        data = response.json()
     except requests.RequestException as e:
         logger.error(f"Failed to fetch MTA alerts: {e}")
         return []
+    except ValueError as e:
+        logger.error(f"Failed to parse JSON response: {e}")
+        return []
     
-    soup = BeautifulSoup(response.text, 'html.parser')
-    
-    # Find alert containers - structure may vary
-    alert_containers = soup.find_all('div', class_='alert-container') or \
-                       soup.find_all('article') or \
-                       soup.select('.service-alert, .alert-item')
-    
-    if not alert_containers:
-        logger.warning("Could not find alert containers on page")
+    # GTFS-RT alerts come in a specific format
+    # The response contains feed_message with entity list
+    if not isinstance(data, dict):
+        logger.warning("Unexpected response format")
         return []
     
     alerts = []
     current_time = datetime.now(timezone.utc)
     
-    for container in alert_containers:
-        # Extract route information
-        route_elem = container.find('span', class_='route') or \
-                     container.find('h2') or \
-                     container.find('strong')
-        
-        if not route_elem:
+    # Extract entities from the feed message
+    feed_message = data.get('feed_message', {})
+    entities = feed_message.get('entity', []) if isinstance(feed_message, dict) else []
+    
+    for entity in entities:
+        if not isinstance(entity, dict):
             continue
             
-        route_text = route_elem.get_text(strip=True)
+        # Get the alert information from the entity
+        alert_data = entity.get('alert', {})
+        if not alert_data:
+            continue
+            
+        # Extract affected routes/areas
+        affected_entities = alert_data.get('affected_entity', [])
+        route_names = []
+        mode = 'subway'  # default
         
-        # Determine mode and extract route name
-        mode = 'subway'
-        route_name = route_text
+        for affected in affected_entities:
+            if isinstance(affected, dict):
+                agency_id = affected.get('agency_id', '')
+                trip_id = affected.get('trip_id', '')
+                start_stop_id = affected.get('start_stop_id', '')
+                end_stop_id = affected.get('end_stop_id', '')
+                route_id = affected.get('route_id', '')
+                
+                # Determine mode from agency ID
+                if 'MTA Bus' in agency_id or 'NYCTBus' in agency_id:
+                    mode = 'bus'
+                elif 'LIRR' in agency_id:
+                    mode = 'lirr'
+                elif 'PATH' in agency_id:
+                    mode = 'path'
+                else:
+                    mode = 'subway'
+                
+                # Extract route name from various fields
+                if trip_id and not trip_id.startswith('0'):
+                    route_names.append(trip_id)
+                elif start_stop_id and '/' in str(start_stop_id):
+                    route_names.append(str(start_stop_id).split('/')[0])
+                elif end_stop_id and '/' in str(end_stop_id):
+                    route_names.append(str(end_stop_id).split('/')[0])
         
-        if any(route in route_text.upper() for route in ['BUS', 'MTA BUS']):
-            mode = 'bus'
-        elif 'LIRR' in route_text.upper():
-            mode = 'lirr'
-        elif 'PATH' in route_text.upper():
-            mode = 'path'
-        
-        # Check if this route is relevant to Kensington
+        if not route_names:
+            continue
+            
+        # Check if any route is relevant to Kensington
         is_relevant = False
-        if mode == 'subway':
-            is_relevant = any(route in route_text for route in KENSINGTON_RELEVANT_ROUTES['subway'])
-        elif mode == 'bus':
-            is_relevant = any(route in route_text for route in KENSINGTON_RELEVANT_ROUTES['bus'])
+        for route_name in route_names:
+            if mode == 'subway' and any(route in str(route_name) for route in KENSINGTON_RELEVANT_ROUTES['subway']):
+                is_relevant = True
+                break
+            elif mode == 'bus' and any(route in str(route_name) for route in KENSINGTON_RELEVANT_ROUTES['bus']):
+                is_relevant = True
+                break
         
         if not is_relevant:
             continue
+            
+        # Extract alert text/description
+        causality_info = alert_data.get('causality', [])
+        info_text_list = alert_data.get('info_text', [])
         
-        # Extract alert description
-        desc_elem = container.find('p') or container.find('div', class_='description')
-        description = desc_elem.get_text(strip=True) if desc_elem else route_text
+        description_parts = []
+        for item in (causality_info if isinstance(causality_info, list) else [causality_info]):
+            if isinstance(item, dict):
+                text = item.get('text', '')
+                if text:
+                    description_parts.append(text)
+        
+        for item in (info_text_list if isinstance(info_text_list, list) else [info_text_list]):
+            if isinstance(item, dict):
+                text = item.get('text', '')
+                if text:
+                    description_parts.append(text)
+        
+        description = ' '.join(description_parts) if description_parts else f"Service alert for {', '.join(route_names)}"
         
         # Determine alert type based on keywords
         alert_type = 'service_change'
@@ -141,18 +184,21 @@ def scrape_mta_alerts(start_date: datetime = None, end_date: datetime = None) ->
             alert_type = 'weekend_service'
         
         # Create unique ID
-        alert_id = f"mta_{mode}_{route_name.replace(' ', '_').lower()}_{current_time.strftime('%Y%m%d_%H%M%S')}"
+        route_str = '_'.join(route_names[:2])  # Use first two routes for ID
+        alert_id = f"mta_{mode}_{route_str.replace(' ', '_').lower()}_{current_time.strftime('%Y%m%d_%H%M%S')}"
+        
+        title = f"{', '.join(route_names)}: {description[:100]}..." if len(description) > 100 else f"{', '.join(route_names)}: {description}"
         
         alert = MTAAlert(
             id=alert_id,
-            title=f"{route_text}: {description[:100]}..." if len(description) > 100 else f"{route_text}: {description}",
+            title=title,
             published_at=current_time,
-            route=route_name,
+            route=', '.join(route_names),
             mode=mode,
             alert_type=alert_type,
             description=description,
             severity=None,
-            start_time=parse_date_from_description(description),
+            start_time=None,
             end_time=None
         )
         
