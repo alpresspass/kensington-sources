@@ -86,7 +86,7 @@ def scrape_mta_alerts(start_date: datetime = None, end_date: datetime = None) ->
         return []
     
     # GTFS-RT alerts come in a specific format
-    # The response contains feed_message with entity list
+    # The response contains header and entity at top level (not nested under feed_message)
     if not isinstance(data, dict):
         logger.warning("Unexpected response format")
         return []
@@ -94,9 +94,8 @@ def scrape_mta_alerts(start_date: datetime = None, end_date: datetime = None) ->
     alerts = []
     current_time = datetime.now(timezone.utc)
     
-    # Extract entities from the feed message
-    feed_message = data.get('feed_message', {})
-    entities = feed_message.get('entity', []) if isinstance(feed_message, dict) else []
+    # Extract entities directly from root level
+    entities = data.get('entity', [])
     
     for entity in entities:
         if not isinstance(entity, dict):
@@ -107,21 +106,21 @@ def scrape_mta_alerts(start_date: datetime = None, end_date: datetime = None) ->
         if not alert_data:
             continue
             
-        # Extract affected routes/areas
-        affected_entities = alert_data.get('affected_entity', [])
+        # Extract affected routes/areas - GTFS-RT uses 'informed_entity' for alerts
+        informed_entities = alert_data.get('informed_entity', [])
         route_names = []
         mode = 'subway'  # default
         
-        for affected in affected_entities:
-            if isinstance(affected, dict):
-                agency_id = affected.get('agency_id', '')
-                trip_id = affected.get('trip_id', '')
-                start_stop_id = affected.get('start_stop_id', '')
-                end_stop_id = affected.get('end_stop_id', '')
-                route_id = affected.get('route_id', '')
+        for informed in informed_entities:
+            if isinstance(informed, dict):
+                agency_id = informed.get('agency_id', '')
+                route_id = informed.get('route_id', '')
+                trip_id = informed.get('trip_id', '')
+                start_stop_id = informed.get('start_stop_id', '')
+                end_stop_id = informed.get('end_stop_id', '')
                 
                 # Determine mode from agency ID
-                if 'MTA Bus' in agency_id or 'NYCTBus' in agency_id:
+                if 'MTABC' in agency_id or 'NYCTBus' in agency_id:
                     mode = 'bus'
                 elif 'LIRR' in agency_id:
                     mode = 'lirr'
@@ -137,6 +136,10 @@ def scrape_mta_alerts(start_date: datetime = None, end_date: datetime = None) ->
                     route_names.append(str(start_stop_id).split('/')[0])
                 elif end_stop_id and '/' in str(end_stop_id):
                     route_names.append(str(end_stop_id).split('/')[0])
+                
+                # Add route_id if present
+                if route_id:
+                    route_names.append(route_id)
         
         if not route_names:
             continue
@@ -155,16 +158,29 @@ def scrape_mta_alerts(start_date: datetime = None, end_date: datetime = None) ->
             continue
             
         # Extract alert text/description
+        # GTFS-RT alerts use header_text for the main message and info_text for details
+        header_text_obj = alert_data.get('header_text', {})
         causality_info = alert_data.get('causality', [])
         info_text_list = alert_data.get('info_text', [])
         
         description_parts = []
+        
+        # Extract from header_text.translation[0].text (main alert message)
+        if isinstance(header_text_obj, dict):
+            translations = header_text_obj.get('translation', [])
+            if isinstance(translations, list) and len(translations) > 0:
+                main_text = translations[0].get('text', '') if isinstance(translations[0], dict) else ''
+                if main_text:
+                    description_parts.append(main_text)
+        
+        # Also check causality for additional context
         for item in (causality_info if isinstance(causality_info, list) else [causality_info]):
             if isinstance(item, dict):
                 text = item.get('text', '')
                 if text:
                     description_parts.append(text)
         
+        # And info_text for details
         for item in (info_text_list if isinstance(info_text_list, list) else [info_text_list]):
             if isinstance(item, dict):
                 text = item.get('text', '')
