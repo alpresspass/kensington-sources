@@ -24,61 +24,37 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from models.building_permit import BuildingPermitItem
 
 
-# Kensington area streets (most reliable filter)
-# Includes main Kensington streets + surrounding area relevant to 11218 zip code
-KENNSINGTON_STREETS = [
-    # Main Kensington streets
-    "KENSINGTON AVENUE",
-    "MYRTLE AVENUE", 
-    "MANHATTAN AVE",
-    "NEW YORK AVE",
-    "BUSHWICK AVE",
-    "STANTON STREET",
-    "MORRIS AVE",
-    # Surrounding area streets
-    "NASSAU STREET",
-    "FLATLANDS AVENUE",
-    "DEKalb AVENUE",
-    "NOBLE STREET",
-    "HALSEY STREET",
-    "CORNELIA STREET",
-    "MORRIS PARK AVE",
-    "BUSHWICK PLACE",
-]
+# Kensington zip code - covers the neighborhood and surrounding area
+KENSINGTON_ZIP_CODE = "11218"
 
 # NYC Open Data CSV endpoint - REAL-TIME dataset!
 CSV_URL = "https://data.cityofnewyork.us/resource/rbx6-tga4.csv"
 
 
-def is_in_kensington_area(street_name: str) -> bool:
+def is_in_kensington_area(zip_code: str) -> bool:
     """
-    Check if a street name is in the Kensington area.
+    Check if a zip code matches Kensington (11218).
     """
-    street_upper = street_name.upper() if street_name else ""
-    for kensington_street in KENNSINGTON_STREETS:
-        if kensington_street in street_upper:
-            return True
-    return False
+    return zip_code == KENSINGTON_ZIP_CODE
 
 
 def fetch_permits_for_date(target_date: date) -> List[BuildingPermitItem]:
     """
     Fetch building permits for a specific date.
     
-    Downloads full CSV and filters by Brooklyn + Kensington streets in Python.
+    Downloads full CSV and filters by zip code 11218 (Kensington area) in Python.
     Uses rbx6-tga4 dataset which has REAL-TIME data (not historical like ipu4-2q9a).
     """
     # Format date as NYC Open Data expects (YYYY-MM-DD)
     target_date_str = target_date.strftime("%Y-%m-%d")
     
     permits = []
-    brooklyn_count = 0
+    zip_code_count = 0
     kensington_count = 0
     
     try:
         print(f"Fetching DOB permits for {target_date_str}")
-        print(f"  Borough: Brooklyn")
-        print(f"  Streets: {', '.join(KENNSINGTON_STREETS)}")
+        print(f"  Zip Code: {KENSINGTON_ZIP_CODE}")
         
         # Download CSV
         with urllib.request.urlopen(CSV_URL, timeout=60) as response:
@@ -88,16 +64,11 @@ def fetch_permits_for_date(target_date: date) -> List[BuildingPermitItem]:
         reader = csv.DictReader(content.splitlines())
         
         for row in reader:
-            # Filter by Brooklyn (borough column has full name)
-            if row.get("borough") != "BROOKLYN":
+            # Filter by zip code (Kensington area)
+            row_zip_code = row.get("zip_code", "")
+            if not is_in_kensington_area(row_zip_code):
                 continue
-            brooklyn_count += 1
-            
-            # Filter by Kensington streets
-            street_name = row.get("street_name", "")
-            if not is_in_kensington_area(street_name):
-                continue
-            kensington_count += 1
+            zip_code_count += 1
             
             # Check issued date matches target (format: YYYY-MM-DD)
             issued_date = row.get("issued_date", "")
@@ -113,7 +84,7 @@ def fetch_permits_for_date(target_date: date) -> List[BuildingPermitItem]:
                     lot=int(row["lot"]) if row.get("lot") else 0,
                     borough="4",  # Brooklyn code
                     house_number=row.get("house__") or None,
-                    street_name=street_name,
+                    street_name=row.get("street_name") or None,
                     zip_code=row.get("zip_code") or None,
                     work_type=row.get("work_type") or None,
                     permit_issued_date=target_date,
@@ -124,8 +95,8 @@ def fetch_permits_for_date(target_date: date) -> List[BuildingPermitItem]:
             except (KeyError, ValueError) as e:
                 continue  # Skip malformed rows
         
-        print(f"  Brooklyn permits: {brooklyn_count}")
-        print(f"  Kensington area permits: {kensington_count}")
+        print(f"  Zip code {KENSINGTON_ZIP_CODE} permits: {zip_code_count}")
+        print(f"  Total permits found: {len(permits)}")
         return permits
         
     except Exception as e:
