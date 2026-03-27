@@ -11,6 +11,7 @@ Usage:
 import argparse
 import json
 import logging
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
 import feedparser
@@ -34,7 +35,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 SOURCE_NAME = "brooklyn_eagle_rss"
-RSS_URL = "https://brooklyneagle.com/feed"
+RSS_URL = "https://brooklyneagle.com/feed/"  # Note: trailing slash required
 BASE_DIR = Path(__file__).parent
 SCRAPE_ITEMS_DIR = BASE_DIR / "scrape_items"
 
@@ -42,7 +43,7 @@ SCRAPE_ITEMS_DIR = BASE_DIR / "scrape_items"
 KENNSINGTON_KEYWORDS = [
     "kensington", "greenpoint", "williamsburg", "bed-stuy", "bedford-stuyvesant",
     "brooklyn heights", "downtown brooklyn", "fort greene", "boerum hill",
-    "11218", "11222", "11249", "11205", "11206", "11201", "11217"
+    "bushwick", "11218", "11222", "11249", "11205", "11206", "11201", "11217"
 ]
 
 
@@ -57,36 +58,36 @@ def parse_rss_feed():
     logger.info(f"Fetching RSS feed from {RSS_URL}")
     
     try:
-        # Fetch raw content first for better control
-        import requests
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15',
-            'Accept': 'application/rss+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Referer': 'https://brooklyneagle.com/',
-        }
-        resp = requests.get(RSS_URL, headers=headers, timeout=10)
-        resp.raise_for_status()
+        # Use feedparser directly with custom headers
+        feed = feedparser.parse(RSS_URL, agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15")
         
-        # Clean up common XML issues in Brooklyn Eagle feed
-        cleaned_content = resp.text
-        # Fix unescaped ampersands in URLs and text
-        cleaned_content = re.sub(r'(?<!&)&(?!amp;|lt;|gt;|quot;|apos;)', '&amp;', cleaned_content)
+        # Debug: Check if feed loaded correctly
+        logger.info(f"Feed status: {feed.status}, entries count: {len(feed.entries)}")
         
-        feed = feedparser.parse(cleaned_content)
+        # If we got a redirect, try the new URL
+        if feed.status == 301 and 'location' in feed.bozo_exception or hasattr(feed, 'url'):
+            logger.info(f"Redirect detected. Feed URL: {feed.feed.get('link', 'N/A')}")
         
         items = []
         for entry in feed.entries[:50]:  # Limit to first 50 entries
             try:
+                # Parse published date - time.struct_time is a tuple
+                published_at = None
+                if hasattr(entry, 'published_parsed') and entry.published_parsed:
+                    try:
+                        import time
+                        timestamp = time.mktime(entry.published_parsed)
+                        published_at = datetime.fromtimestamp(timestamp)
+                    except (ValueError, TypeError):
+                        pass
+                
                 item = RSSArticleItem(
                     id=entry.get("id", entry.link)[:100],
                     title=entry.title,
                     link=entry.link,
                     summary=entry.get("summary", "")[:2000] if entry.get("summary") else None,
                     content=None,  # Full content not needed for headlines
-                    published_at=datetime.fromisoformat(entry.published_parsed[:19].replace(" ", "T"))
-                        if hasattr(entry, 'published_parsed') and entry.published_parsed
-                        else datetime.now(),
+                    published_at=published_at,
                     author=entry.get("author", "Brooklyn Eagle"),
                     categories=[tag.term for tag in entry.tags] if hasattr(entry, 'tags') else []
                 )
@@ -135,7 +136,9 @@ def save_items(items, start_date=None, end_date=None):
         
         # Save each item as separate JSON file
         for item in day_items:
-            filename = f"{SOURCE_NAME}_{date_str}_{item.id[:50]}.json"
+            # Sanitize ID for filename (remove invalid characters)
+            safe_id = re.sub(r'[^a-zA-Z0-9_-]', '_', item.id[:50])
+            filename = f"{SOURCE_NAME}_{date_str}_{safe_id}.json"
             filepath = day_dir / filename
             
             if not filepath.exists():  # Only save new items

@@ -47,3 +47,61 @@
 2026-03-26 20:30:40,862 INFO: Found 0 Kensington-relevant items
 2026-03-26 20:30:40,863 INFO: No items to save
 2026-03-26 20:30:40,863 INFO: Scraping complete. Saved 0 new items.
+2026-03-27 10:37:16,313 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-27 10:37:16,314 INFO: Scraping last full day: 2026-03-26
+2026-03-27 10:37:16,314 INFO: Fetching RSS feed from https://brooklyneagle.com/feed
+2026-03-27 10:37:17,858 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-27 10:37:17,859 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-27 10:37:17,859 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-27 10:37:17,859 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-27 10:37:17,859 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-27 10:37:17,859 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-27 10:37:17,859 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-27 10:37:17,859 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-27 10:37:17,859 WARNING: Error parsing entry: 'tuple' object has no attribute 'replace'
+2026-03-27 10:37:17,859 INFO: Found 0 Kensington-relevant items
+2026-03-27 10:37:17,859 INFO: No items to save
+2026-03-27 10:37:17,859 INFO: Scraping complete. Saved 0 new items.
+2026-03-27 10:41:08,476 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-27 10:41:08,476 INFO: Scraping last full day: 2026-03-26
+2026-03-27 10:41:08,476 INFO: Fetching RSS feed from https://brooklyneagle.com/feed
+2026-03-27 10:41:09,770 INFO: Found 0 Kensington-relevant items
+2026-03-27 10:41:09,770 INFO: No items to save
+2026-03-27 10:41:09,770 INFO: Scraping complete. Saved 0 new items.
+2026-03-27 10:42:03,070 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-27 10:42:03,070 INFO: Scraping last full day: 2026-03-26
+2026-03-27 10:42:03,071 INFO: Fetching RSS feed from https://brooklyneagle.com/feed
+2026-03-27 10:42:04,523 INFO: Feed status: 301, entries count: 9
+2026-03-27 10:42:04,524 INFO: Found 0 Kensington-relevant items
+2026-03-27 10:42:04,524 INFO: No items to save
+2026-03-27 10:42:04,524 INFO: Scraping complete. Saved 0 new items.
+2026-03-27 10:50:10,580 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-27 10:50:10,580 INFO: Scraping last full day: 2026-03-26
+2026-03-27 10:50:10,580 INFO: Fetching RSS feed from https://brooklyneagle.com/feed/
+2026-03-27 10:50:10,963 INFO: Feed status: 200, entries count: 9
+2026-03-27 10:50:10,963 INFO: Redirect detected. Feed URL: https://brooklyneagle.com/
+2026-03-27 10:50:10,964 INFO: Found 0 Kensington-relevant items
+2026-03-27 10:50:10,964 INFO: No items to save
+2026-03-27 10:50:10,964 INFO: Scraping complete. Saved 0 new items.
+2026-03-27 10:56:45,419 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-27 10:56:45,419 INFO: Scraping last full day: 2026-03-26
+2026-03-27 10:56:45,419 INFO: Fetching RSS feed from https://brooklyneagle.com/feed/
+2026-03-27 10:56:46,167 INFO: Feed status: 200, entries count: 9
+2026-03-27 10:56:46,168 INFO: Redirect detected. Feed URL: https://brooklyneagle.com/
+2026-03-27 10:56:46,169 INFO: Found 1 Kensington-relevant items
+2026-03-27 10:56:46,181 INFO: Saved 0 items to /Users/al/.openclaw/workspace/kensington-sources/sources/brooklyn_eagle_rss/scrape_items
+2026-03-27 10:56:46,181 INFO: Scraping complete. Saved 0 new items.
+2026-03-27 10:59:45,992 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-27 10:59:45,992 INFO: Scraping from 2026-03-26 to 2026-03-27
+2026-03-27 10:59:45,992 INFO: Fetching RSS feed from https://brooklyneagle.com/feed/
+2026-03-27 10:59:46,302 INFO: Feed status: 200, entries count: 9
+2026-03-27 10:59:46,302 INFO: Redirect detected. Feed URL: https://brooklyneagle.com/
+2026-03-27 10:59:46,303 INFO: Found 1 Kensington-relevant items
+2026-03-27 11:01:22,767 INFO: Starting brooklyn_eagle_rss scraper
+2026-03-27 11:01:22,768 INFO: Scraping from 2026-03-26 to 2026-03-27
+2026-03-27 11:01:22,768 INFO: Fetching RSS feed from https://brooklyneagle.com/feed/
+2026-03-27 11:01:23,084 INFO: Feed status: 200, entries count: 9
+2026-03-27 11:01:23,084 INFO: Redirect detected. Feed URL: https://brooklyneagle.com/
+2026-03-27 11:01:23,086 INFO: Found 1 Kensington-relevant items
+2026-03-27 11:01:23,099 INFO: Saved 2 items to /Users/al/.openclaw/workspace/kensington-sources/sources/brooklyn_eagle_rss/scrape_items
+2026-03-27 11:01:23,099 INFO: Scraping complete. Saved 2 new items.
