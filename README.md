@@ -44,7 +44,7 @@ Sources must meet these criteria:
 
 ### Good Sources Examples:
 - `https://mta.info/alerts` - Individual service change alerts → "G Trains not running past Church Ave"
-- Subreddits like r/KensingtonBrooklyn, r/Greenpoint, r/Williamsburg
+- Subreddits like r/KensingtonBrooklyn, r/Greenpoint, r/Williamsburg, r/Brooklyn, r/Flatbush
 - Community organization event calendars
 - NYC Open Data feeds for local area
 
