@@ -1,10 +1,29 @@
-# Kensington Free Press - News Sources Repository
+# Kensington Free Press - Primary Source Repository
 
-This repository contains news source scrapers for the **Kensington Free Press (KFP)**, covering Kensington, Brooklyn (zip code 11218).
+This repository contains **primary source** scrapers for the **Kensington Free Press (KFP)**, covering Kensington, Brooklyn (zip code 11218).
 
 ## Overview
 
-The KFP collects news from various sources to produce local headlines. Each source is organized in its own folder under `sources/` with a consistent interface.
+The KFP collects news from **primary sources only** — NOT news publications. We use news sites like Greenpointers to *discover* real sources, but never scrape them directly.
+
+### What Counts as a Primary Source?
+
+✅ **YES - Primary Sources:**
+- Community Board meeting minutes and agendas (CB6 covers Kensington)
+- NYC building permits and zoning applications
+- Liquor license applications (NYC ABC)
+- Cannabis dispensary applications
+- Traffic route changes, parking studies
+- Government press releases and alerts
+- Subreddit posts from local communities
+- Event calendars from community organizations
+
+❌ **NO - Not Primary Sources:**
+- News publications (Greenpointers, Brooklyn Eagle, 6sqft, etc.)
+- Blog posts about local news
+- Any site that reports on events rather than being the source
+
+Each source is organized in its own folder under `sources/` with a consistent interface.
 
 ## Directory Structure
 

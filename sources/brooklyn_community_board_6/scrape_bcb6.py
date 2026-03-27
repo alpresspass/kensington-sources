@@ -16,29 +16,12 @@ from datetime import datetime, timedelta
 from typing import Optional
 import feedparser
 
-# Add parent directory to path for models
-sys.path.insert(0, str(Path(__file__).parent.parent))
+# Add project root to path for models
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
 
-from models.base import ScrapeItem
-from pydantic import Field
-
-
-class CommunityBoardMeetingItem(ScrapeItem):
-    """
-    A meeting minute or agenda item from Brooklyn Community Board 6.
-    
-    Fields:
-        title: The title of the meeting or agenda item
-        date: Date of the meeting (for minutes) or scheduled meeting (for agendas)
-        url: Link to the full meeting page or PDF
-        content_type: 'minutes' or 'agenda'
-        topics: List of topics discussed or planned for discussion
-    """
-    title: str = Field(..., description="Title of the meeting")
-    date: datetime = Field(..., description="Date of the meeting")
-    url: str = Field(..., description="URL to the meeting page or PDF")
-    content_type: str = Field(..., description="Type: 'minutes' or 'agenda'")
-    topics: list[str] = Field(default=[], description="Topics discussed or planned")
+from models.community_board_meeting import CommunityBoardMeetingItem as CB6Model
+from pydantic import BaseModel, Field
 
 
 def parse_meeting_date(date_str: str) -> Optional[datetime]:
@@ -134,7 +117,7 @@ def extract_topics_from_title(title: str) -> list[str]:
 def scrape_cb6_meetings(
     start_date: Optional[datetime] = None,
     end_date: Optional[datetime] = None
-) -> list[CommunityBoardMeetingItem]:
+) -> list[CB6Model]:
     """
     Scrape meeting minutes and agendas from Brooklyn Community Board 6.
     
@@ -143,7 +126,7 @@ def scrape_cb6_meetings(
         end_date: End of date range (default: yesterday)
     
     Returns:
-        List of CommunityBoardMeetingItem objects
+        List of CB6Model objects
     """
     if start_date is None:
         start_date = datetime.now()
@@ -185,16 +168,12 @@ def scrape_cb6_meetings(
             if not is_kensington_relevant(title, topics):
                 continue
             
-            item = CommunityBoardMeetingItem(
+            item = CB6Model(
                 title=title,
                 date=pub_date,
                 url=url,
                 content_type="minutes",
-                topics=topics,
-                source_metadata={
-                    "source": "brooklyn_community_board_6",
-                    "scraped_at": datetime.now().isoformat()
-                }
+                topics=topics
             )
             items.append(item)
             
