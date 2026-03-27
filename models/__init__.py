@@ -10,6 +10,7 @@ from .event_item import EventItem
 from .alert_item import AlertItem
 from .subreddit_post import SubredditPostItem
 from .community_board_meeting import CommunityBoardMeetingItem
+from .building_permit import BuildingPermitItem
 
 __all__ = [
     "BaseScrapeItem",
@@ -18,4 +19,5 @@ __all__ = [
     "AlertItem",
     "SubredditPostItem",
     "CommunityBoardMeetingItem",
+    "BuildingPermitItem",
 ]
