@@ -1,0 +1,5 @@
+[2026-03-28 05:19:49 UTC] Starting The City scrape from 2026-03-26 00:01:00.860307 to 2026-03-28 23:59:59.860307
+[2026-03-28 05:19:50 UTC] Found 10 The City items
+[2026-03-28 05:19:50 UTC] Saved 7 items to /Users/al/.openclaw/workspace/kensington-sources/sources/thecity_rss/scrape_items/2026-03-26/thecity_rss_2026-03-26.json
+[2026-03-28 05:19:50 UTC] Saved 3 items to /Users/al/.openclaw/workspace/kensington-sources/sources/thecity_rss/scrape_items/2026-03-27/thecity_rss_2026-03-27.json
+[2026-03-28 05:19:50 UTC] The City scrape complete
