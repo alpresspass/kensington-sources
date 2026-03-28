@@ -1,167 +1,141 @@
 #!/usr/bin/env python3
 """
-Scrape Brooklyn Eagle RSS feed for Kensington-relevant news.
-
-Brooklyn Eagle covers central/southern Brooklyn including Kensington, Windsor Terrace,
-Flatbush, Ditmas Park, and surrounding neighborhoods.
+Scrape Brooklyn Eagle RSS feed for Brooklyn neighborhood news.
+Brooklyn Eagle covers local business, community events, and neighborhood news in Brooklyn.
 """
 
 import argparse
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
+import json
+import os
 from pathlib import Path
-from typing import List
 import sys
-import feedparser
+from typing import Optional
 
-# Add parent directory to path for imports
+try:
+    from feedparser import parse as parse_rss
+except ImportError:
+    print("Error: feedparser not installed. Run: uv add feedparser")
+    sys.exit(1)
+
+# Add project root to path for imports (sources/brooklyn_eagle_rss/ -> sources/ -> kensington-sources/)
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+from models import RSSItem
 
-from models.rss_item import RSSItem
+SOURCE_NAME = "brooklyn_eagle_rss"
+BASE_URL = "https://brooklyneagle.com/feed/"
+OUTPUT_DIR = Path(__file__).parent / "scrape_items"
+LOG_FILE = Path(__file__).parent / "scrape_log.txt"
 
-RSS_URL = "https://brooklyneagle.com/feed/"
+def parse_args():
+    parser = argparse.ArgumentParser(description="Scrape Brooklyn Eagle RSS feed")
+    parser.add_argument("--days-ago", type=int, default=1,
+                       help="Number of days back to scrape (default: 1)")
+    parser.add_argument("--start-date", type=str, default=None,
+                       help="Start date in YYYY-MM-DD format")
+    parser.add_argument("--end-date", type=str, default=None,
+                       help="End date in YYYY-MM-DD format")
+    return parser.parse_args()
 
-# Keywords that indicate Kensington relevance
-KENSINGTON_KEYWORDS = [
-    "kensington", "windsor terrace", "flatbush", "ditmas park", 
-    "midwood", "bensonhurst", "bay ridge", "sunset park",
-    "myrtle avenue", "manhattan ave", "new york ave", "bushwick ave",
-    "18th avenue", "mcdonald avenue", "church avenue", "fort hamilton pkwy",
-    "11218", "11215", "11230", "11213"
-]
-
-def fetch_posts_for_date(target_date: date) -> List[RSSItem]:
-    """
-    Fetch Brooklyn Eagle RSS posts for a specific date.
-    
-    The RSS feed contains recent posts. We filter by date in Python.
-    """
-    print(f"Fetching from {RSS_URL}...")
-    
-    try:
-        response = feedparser.parse(RSS_URL)
-    except Exception as e:
-        print(f"Error fetching RSS: {e}", file=sys.stderr)
-        return []
-    
-    entries = response.entries
-    print(f"Total entries in feed: {len(entries)}")
-    
-    # Convert target_date to boundaries for comparison
-    start_dt = datetime(target_date.year, target_date.month, target_date.day)
-    end_dt = start_dt + timedelta(days=1)
-    
-    all_posts: List[RSSItem] = []
-    
-    for entry in entries:
-        try:
-            # Parse publication date
-            pub_date = None
-            if hasattr(entry, 'published_parsed') and entry.published_parsed:
-                pub_date = datetime(*entry.published_parsed[:6])
-            elif hasattr(entry, 'updated_parsed') and entry.updated_parsed:
-                pub_date = datetime(*entry.updated_parsed[:6])
-            
-            # Filter by date
-            if not pub_date or not (start_dt <= pub_date < end_dt):
-                continue
-            
-            # Check Kensington relevance
-            title_lower = (entry.get('title') or '').lower()
-            summary_lower = (entry.get('summary') or '').lower()
-            combined_text = title_lower + " " + summary_lower
-            
-            is_kensington_related = any(kw in combined_text for kw in KENSINGTON_KEYWORDS)
-            
-            post_item = RSSItem(
-                title=entry.get('title', ''),
-                link=entry.get('link', ''),
-                pub_date=pub_date,
-                summary=(entry.get('summary') or '').replace('\n', ' ').strip(),
-                author=entry.get('author', ''),
-                is_kensington_related=is_kensington_related,
-            )
-            all_posts.append(post_item)
-            
-        except (KeyError, ValueError) as e:
-            continue  # Skip malformed entries
-    
-    print(f"Posts from target date ({target_date}): {len(all_posts)}")
-    return all_posts
-
-
-def save_posts(posts: List[RSSItem], target_date: date, output_dir: Path) -> None:
-    """
-    Save posts to a JSON file for the given date.
-    """
-    import json
-    
-    # Create date folder if needed
-    date_folder = output_dir / target_date.strftime("%Y-%m-%d")
-    date_folder.mkdir(parents=True, exist_ok=True)
-    
-    # Save as JSON
-    output_file = date_folder / f"brooklyn_eagle_{target_date.strftime('%Y-%m-%d')}.json"
-    
-    posts_data = [
-        {
-            "title": p.title,
-            "link": p.link,
-            "pub_date": p.pub_date.isoformat() if p.pub_date else None,
-            "summary": p.summary,
-            "author": p.author,
-            "is_kensington_related": p.is_kensington_related,
-        }
-        for p in posts
-    ]
-    
-    with open(output_file, 'w') as f:
-        json.dump(posts_data, f, indent=2)
-    
-    print(f"Saved {len(posts)} posts to {output_file}")
-
-
-def log_scrape(target_date: date, count: int, success: bool = True) -> None:
-    """
-    Log the scrape operation.
-    """
-    log_file = Path(__file__).parent / "scrape_log.txt"
+def log_message(message: str):
+    """Append a timestamped message to the log file."""
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    status = "SUCCESS" if success else "FAILED"
-    
-    with open(log_file, 'a') as f:
-        f.write(f"{timestamp} - {status} - Scraped {count} posts for {target_date}\n")
+    with open(LOG_FILE, "a") as f:
+        f.write(f"[{timestamp}] {message}\n")
 
+def get_date_range(args):
+    """Calculate start and end datetimes for scraping."""
+    if args.start_date and args.end_date:
+        start = datetime.strptime(args.start_date, "%Y-%m-%d")
+        end = datetime.strptime(args.end_date, "%Y-%m-%d") + timedelta(days=1)
+    else:
+        # Default: last N full days (12:01 AM to 11:59 PM)
+        now = datetime.now()
+        end = now.replace(hour=23, minute=59, second=59)
+        start = now - timedelta(days=args.days_ago)
+        start = start.replace(hour=0, minute=1, second=0)
+    
+    return start, end
+
+def scrape_brooklyn_eagle(start: datetime, end: datetime) -> list[RSSItem]:
+    """
+    Scrape Brooklyn Eagle RSS feed for items within the date range.
+    Returns a list of RSSItem objects.
+    """
+    log_message(f"Starting Brooklyn Eagle scrape from {start} to {end}")
+    
+    # Parse RSS feed
+    feed = parse_rss(BASE_URL)
+    
+    items = []
+    for entry in feed.entries:
+        # Parse publication date
+        pub_date = None
+        if hasattr(entry, 'published_parsed') and entry.published_parsed:
+            pub_date = datetime(*entry.published_parsed[:6])
+        elif hasattr(entry, 'updated_parsed') and entry.updated_parsed:
+            pub_date = datetime(*entry.updated_parsed[:6])
+        
+        # Skip if no date or outside range
+        if not pub_date or pub_date < start or pub_date > end:
+            continue
+        
+        # Create RSSItem
+        item = RSSItem(
+            id=f"{SOURCE_NAME}_{entry.get('link', '').replace('/', '_')}",
+            title=entry.get('title', ''),
+            published_at=pub_date,
+            link=entry.get('link', ''),
+            summary=entry.get('description', ''),
+            author=entry.get('author', '')
+        )
+        items.append(item)
+    
+    log_message(f"Found {len(items)} Brooklyn Eagle items")
+    return items
+
+def save_items(items: list[RSSItem]):
+    """Save items to JSON files organized by date."""
+    if not items:
+        log_message("No items to save")
+        return
+    
+    # Group items by date
+    items_by_date = {}
+    for item in items:
+        date_str = item.published_at.strftime("%Y-%m-%d")
+        if date_str not in items_by_date:
+            items_by_date[date_str] = []
+        items_by_date[date_str].append(item)
+    
+    # Save each day's items
+    for date_str, day_items in sorted(items_by_date.items()):
+        output_path = OUTPUT_DIR / date_str
+        output_path.mkdir(parents=True, exist_ok=True)
+        
+        json_file = output_path / f"{SOURCE_NAME}_{date_str}.json"
+        
+        # Convert to serializable format - convert datetime to ISO string
+        def serialize_item(item):
+            d = item.model_dump()
+            if 'published_at' in d and isinstance(d['published_at'], datetime):
+                d['published_at'] = d['published_at'].isoformat()
+            return d
+        data = [serialize_item(item) for item in day_items]
+        
+        with open(json_file, 'w') as f:
+            json.dump(data, f, indent=2)
+        
+        log_message(f"Saved {len(day_items)} items to {json_file}")
 
 def main():
-    parser = argparse.ArgumentParser(description="Scrape Brooklyn Eagle RSS feed")
-    parser.add_argument("--date", type=str, help="Date to scrape (YYYY-MM-DD), default: today")
-    parser.add_argument("--days-ago", type=int, default=0, help="Days ago from today")
-    args = parser.parse_args()
+    args = parse_args()
+    start, end = get_date_range(args)
     
-    # Determine target date
-    if args.date:
-        target_date = datetime.strptime(args.date, "%Y-%m-%d").date()
-    else:
-        target_date = date.today() - timedelta(days=args.days_ago)
+    items = scrape_brooklyn_eagle(start, end)
+    save_items(items)
     
-    print(f"Scraping Brooklyn Eagle RSS for {target_date}")
-    
-    # Fetch posts
-    posts = fetch_posts_for_date(target_date)
-    
-    if posts:
-        # Save to file
-        output_dir = Path(__file__).parent / "scrape_items"
-        save_posts(posts, target_date, output_dir)
-        
-        # Show first few
-        for post in posts[:5]:  # Show first 5
-            kensington_flag = " [K]" if post.is_kensington_related else ""
-            print(f"  - {post.title[:60]}...{kensington_flag}")
-    
-    # Log the operation
-    log_scrape(target_date, len(posts), success=True)
-
+    log_message("Brooklyn Eagle scrape complete")
 
 if __name__ == "__main__":
     main()
