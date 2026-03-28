@@ -295,7 +295,7 @@ def main():
     
     # Log scrape completion
     with open(log_file, 'a') as f:
-        f.write(f"Scrape completed: {datetime.now(timezone.utc).isoformat} - {len(alerts)} alerts\n")
+        f.write(f"Scrape completed: {datetime.now(timezone.utc).isoformat()} - {len(alerts)} alerts\n")
 
 
 if __name__ == '__main__':
