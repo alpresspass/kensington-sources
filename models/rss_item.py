@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 RSS Article ScrapeItem model.
 
@@ -12,8 +13,6 @@ Used for scraping news articles from RSS feeds like:
 from datetime import datetime
 from pydantic import BaseModel, Field
 from typing import Optional, List
-
-# Import base models
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
@@ -21,7 +20,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from .base import BaseScrapeItem
 
 
-class RSSArticleItem(BaseScrapeItem):
+class RSSItem(BaseScrapeItem):
     """
     ScrapeItem for RSS feed articles.
     
@@ -45,9 +44,9 @@ class RSSArticleItem(BaseScrapeItem):
         default=[],
         description="Categories/tags associated with the article"
     )
-    source_metadata: Optional[dict] = Field(
-        default=None,
-        description="Additional metadata from the source (optional)"
+    is_kensington_related: bool = Field(
+        default=False,
+        description="Whether this post mentions Kensington area keywords"
     )
     
     def can_produce_headline(self) -> bool:

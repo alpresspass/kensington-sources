@@ -1,5 +1,0 @@
-# Brooklyn Community Board 6 Scraper Log
-# Format: [timestamp] message
-
-[2026-03-27 11:59:00] Source created - scraping CB6 meeting minutes and agendas
-[2026-03-27 11:59:00] Initial setup complete

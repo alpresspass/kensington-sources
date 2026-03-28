@@ -5,19 +5,19 @@ Each source type has its own ScrapeItem model.
 """
 
 from .base import BaseScrapeItem
-from .rss_item import RSSArticleItem
+from .rss_item import RSSItem
 from .event_item import EventItem
 from .alert_item import AlertItem
-from .subreddit_post import SubredditPostItem
+from .reddit_post import RedditPostItem
 from .community_board_meeting import CommunityBoardMeetingItem
 from .building_permit import BuildingPermitItem
 
 __all__ = [
     "BaseScrapeItem",
-    "RSSArticleItem",
+    "RSSItem",
     "EventItem",
     "AlertItem",
-    "SubredditPostItem",
+    "RedditPostItem",
     "CommunityBoardMeetingItem",
     "BuildingPermitItem",
 ]
