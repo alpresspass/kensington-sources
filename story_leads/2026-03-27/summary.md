@@ -2,7 +2,7 @@
 
 ## Summary
 
-**No significant Kensington-specific stories collected today.**
+**Quiet day for Kensington-specific news.**
 
 ### Sources Status:
 | Source | Content Today |
@@ -11,17 +11,21 @@
 | Brooklyn Eagle RSS | 0 posts |
 | Greenpointers RSS | Empty feed |
 | Reddit r/Kensington | No new posts |
+| **BKMAG** | **2 posts** |
+| **The City.nyc** | **1 post** |
+
+### Notable Stories:
+- BKMAG: "No Kings" rally coverage from March 27 (NYC-wide, not Kensington-specific)
+- The City.nyc: NYC transportation/city news (general coverage)
 
 ### Notes:
-- Quiet day for Kensington news
-- MTA alerts are primarily affecting other boroughs (Queens buses, Bronx service)
-- No local development or community stories captured
+- New sources added today: BKMAG and The City.nyc RSS feeds
+- Still a relatively quiet day for hyperlocal Kensington content
+- MTA alerts primarily affecting other boroughs
 
 ### Recommendations:
-1. Consider adding more active sources:
-   - Local business directories
-   - Event calendars (NYC Parks, Brooklyn Public Library)
+1. Continue monitoring new sources for Kensington relevance
+2. Consider adding more targeted sources:
    - NYC311 service requests for 11218
-   - Brooklyn Community Board 6 & 12 meeting minutes (when available)
-
-2. RSS feeds may need manual verification - some sources appear inactive today
+   - Brooklyn Community Board 6 & 12 meeting minutes
+   - Local business directories and event calendars
