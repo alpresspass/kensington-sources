@@ -70,8 +70,11 @@ def fetch_permits_for_date(target_date: date) -> List[BuildingPermitItem]:
                 continue
             zip_code_count += 1
             
-            # Check issued date matches target (format: YYYY-MM-DD)
+            # Check issued date matches target (format: YYYY-MM-DD or YYYY-MM-DDTHH:MM:SS.sss)
             issued_date = row.get("issued_date", "")
+            # Extract just the date portion if it's a full timestamp
+            if issued_date and len(issued_date) > 10:
+                issued_date = issued_date[:10]  # Take first 10 chars: YYYY-MM-DD
             if issued_date != target_date_str:
                 continue
             
