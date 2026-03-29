@@ -9,3 +9,7 @@
 [2026-03-28 05:19:01 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/bkmag_rss/scrape_items/2026-03-26/bkmag_rss_2026-03-26.json
 [2026-03-28 05:19:01 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/bkmag_rss/scrape_items/2026-03-27/bkmag_rss_2026-03-27.json
 [2026-03-28 05:19:01 UTC] BKMAG scrape complete
+[2026-03-29 02:59:48 UTC] Starting BKMAG scrape from 2026-03-27 00:01:00.429088 to 2026-03-28 23:59:59.429088
+[2026-03-29 02:59:48 UTC] Found 1 BKMAG items
+[2026-03-29 02:59:48 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/bkmag_rss/scrape_items/2026-03-27/bkmag_rss_2026-03-27.json
+[2026-03-29 02:59:48 UTC] BKMAG scrape complete
