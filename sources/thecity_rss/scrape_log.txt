@@ -23,3 +23,11 @@
 [2026-03-29 16:36:50 UTC] Found 0 The City items
 [2026-03-29 16:36:50 UTC] No items to save
 [2026-03-29 16:36:50 UTC] The City scrape complete
+[2026-03-29 16:56:09 UTC] Starting The City scrape from 2026-03-28 00:01:00.103506 to 2026-03-29 23:59:59.103506
+[2026-03-29 16:56:09 UTC] Found 0 The City items
+[2026-03-29 16:56:09 UTC] No items to save
+[2026-03-29 16:56:09 UTC] The City scrape complete
+[2026-03-29 17:00:57 UTC] Starting The City scrape from 2026-03-28 00:01:00.851503 to 2026-03-29 23:59:59.851503
+[2026-03-29 17:00:58 UTC] Found 0 The City items
+[2026-03-29 17:00:58 UTC] No items to save
+[2026-03-29 17:00:58 UTC] The City scrape complete
