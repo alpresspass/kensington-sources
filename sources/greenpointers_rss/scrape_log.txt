@@ -31,3 +31,7 @@
 [2026-03-29 05:24:33] Found 0 Greenpointers items
 [2026-03-29 05:24:33] No items to save
 [2026-03-29 05:24:33] Greenpointers scrape complete
+[2026-03-29 06:58:00] Starting Greenpointers scrape from 2026-03-28 00:01:00.667400 to 2026-03-29 23:59:59.667400
+[2026-03-29 06:58:01] Found 0 Greenpointers items
+[2026-03-29 06:58:01] No items to save
+[2026-03-29 06:58:01] Greenpointers scrape complete
