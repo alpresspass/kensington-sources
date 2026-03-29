@@ -273,8 +273,9 @@ def main():
     
     # Log scrape start
     log_file = os.path.join(os.path.dirname(__file__), 'scrape_log.txt')
+    scrape_start = datetime.now(timezone.utc)
     with open(log_file, 'a') as f:
-        f.write(f"Scrape started: {datetime.now(timezone.utc).isoformat()}\n")
+        f.write(f"Scrape started: {scrape_start.isoformat()}\n")
     
     logger.info("Starting MTA alerts scrape...")
     
@@ -283,8 +284,9 @@ def main():
     
     if not alerts:
         logger.info("No relevant alerts found")
+        scrape_end = datetime.now(timezone.utc)
         with open(log_file, 'a') as f:
-            f.write(f"Scrape completed: {datetime.now(timezone.utc).isoformat()} - No alerts\n")
+            f.write(f"Scrape completed: {scrape_end.isoformat()} - No alerts\n")
         return
     
     # Save to date-organized folder
@@ -294,8 +296,9 @@ def main():
     logger.info(f"Scraped {len(alerts)} MTA alerts")
     
     # Log scrape completion
+    scrape_end = datetime.now(timezone.utc)
     with open(log_file, 'a') as f:
-        f.write(f"Scrape completed: {datetime.now(timezone.utc).isoformat()} - {len(alerts)} alerts\n")
+        f.write(f"Scrape completed: {scrape_end.isoformat()} - {len(alerts)} alerts\n")
 
 
 if __name__ == '__main__':
