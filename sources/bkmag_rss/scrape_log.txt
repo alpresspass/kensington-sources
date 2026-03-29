@@ -17,3 +17,7 @@
 [2026-03-29 04:08:29 UTC] Found 0 BKMAG items
 [2026-03-29 04:08:29 UTC] No items to save
 [2026-03-29 04:08:29 UTC] BKMAG scrape complete
+[2026-03-29 15:51:48 UTC] Starting BKMAG scrape from 2026-03-28 00:01:00.857750 to 2026-03-29 23:59:59.857750
+[2026-03-29 15:51:49 UTC] Found 1 BKMAG items
+[2026-03-29 15:51:49 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/bkmag_rss/scrape_items/2026-03-29/bkmag_rss_2026-03-29.json
+[2026-03-29 15:51:49 UTC] BKMAG scrape complete
