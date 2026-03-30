@@ -62,3 +62,13 @@
 [2026-03-30 19:58:19 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/bkmag_rss/scrape_items/2026-03-29/bkmag_rss_2026-03-29.json
 [2026-03-30 19:58:19 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/bkmag_rss/scrape_items/2026-03-30/bkmag_rss_2026-03-30.json
 [2026-03-30 19:58:19 UTC] BKMAG scrape complete
+[2026-03-30 20:40:16 UTC] Starting BKMAG scrape from 2026-03-29 00:01:00.192080 to 2026-03-30 23:59:59.192080
+[2026-03-30 20:40:16 UTC] Found 2 BKMAG items
+[2026-03-30 20:40:16 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/bkmag_rss/scrape_items/2026-03-29/bkmag_rss_2026-03-29.json
+[2026-03-30 20:40:16 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/bkmag_rss/scrape_items/2026-03-30/bkmag_rss_2026-03-30.json
+[2026-03-30 20:40:16 UTC] BKMAG scrape complete
+[2026-03-30 20:45:16 UTC] Starting BKMAG scrape from 2026-03-29 00:01:00.330072 to 2026-03-30 23:59:59.330072
+[2026-03-30 20:45:16 UTC] Found 2 BKMAG items
+[2026-03-30 20:45:16 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/bkmag_rss/scrape_items/2026-03-29/bkmag_rss_2026-03-29.json
+[2026-03-30 20:45:16 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/bkmag_rss/scrape_items/2026-03-30/bkmag_rss_2026-03-30.json
+[2026-03-30 20:45:16 UTC] BKMAG scrape complete
