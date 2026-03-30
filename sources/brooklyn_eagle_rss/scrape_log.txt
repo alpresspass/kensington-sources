@@ -108,3 +108,7 @@
 [2026-03-30 05:34:13] Found 2 Brooklyn Eagle items
 [2026-03-30 05:34:13] Saved 2 items to /Users/al/.openclaw/workspace/kensington-sources/sources/brooklyn_eagle_rss/scrape_items/2026-03-29/brooklyn_eagle_rss_2026-03-29.json
 [2026-03-30 05:34:13] Brooklyn Eagle scrape complete
+[2026-03-30 15:58:52] Starting Brooklyn Eagle scrape from 2026-03-29 00:01:00.335055 to 2026-03-30 23:59:59.335055
+[2026-03-30 15:58:52] Found 9 Brooklyn Eagle items
+[2026-03-30 15:58:52] Saved 9 items to /Users/al/.openclaw/workspace/kensington-sources/sources/brooklyn_eagle_rss/scrape_items/2026-03-30/brooklyn_eagle_rss_2026-03-30.json
+[2026-03-30 15:58:52] Brooklyn Eagle scrape complete
