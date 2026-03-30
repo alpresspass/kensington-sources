@@ -38,3 +38,7 @@
 [2026-03-29 13:15:56 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/nyyimby_rss/scrape_items/2026-03-28/nyyimby_rss_2026-03-28.json
 [2026-03-29 13:15:56 UTC] Saved 4 items to /Users/al/.openclaw/workspace/kensington-sources/sources/nyyimby_rss/scrape_items/2026-03-29/nyyimby_rss_2026-03-29.json
 [2026-03-29 13:15:56 UTC] NY YIMBY scrape complete
+[2026-03-30 05:34:14 UTC] Starting NY YIMBY scrape from 2026-03-29 00:01:00.399591 to 2026-03-30 23:59:59.399591
+[2026-03-30 05:34:15 UTC] Found 4 NY YIMBY items
+[2026-03-30 05:34:15 UTC] Saved 4 items to /Users/al/.openclaw/workspace/kensington-sources/sources/nyyimby_rss/scrape_items/2026-03-29/nyyimby_rss_2026-03-29.json
+[2026-03-30 05:34:15 UTC] NY YIMBY scrape complete
