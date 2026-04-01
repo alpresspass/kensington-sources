@@ -70,3 +70,5 @@ Scrape started: 2026-03-31T08:30:29.301845+00:00
 Scrape completed: 2026-03-31T08:30:29.560130+00:00 - 86 alerts
 Scrape started: 2026-03-31T12:37:29.068139+00:00
 Scrape completed: 2026-03-31T12:37:29.298456+00:00 - 85 alerts
+Scrape started: 2026-04-01T08:42:27.601825+00:00
+Scrape completed: 2026-04-01T08:42:27.803558+00:00 - 87 alerts
