@@ -99,3 +99,8 @@
 [2026-04-01 10:29:49] Found 1 Greenpointers items
 [2026-04-01 10:29:49] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/greenpointers_rss/scrape_items/2026-03-31/greenpointers_rss_2026-03-31.json
 [2026-04-01 10:29:49] Greenpointers scrape complete
+[2026-04-01 10:52:19] Starting Greenpointers scrape from 2026-03-31 00:01:00.522086 to 2026-04-01 23:59:59.522086
+[2026-04-01 10:52:20] Found 2 Greenpointers items
+[2026-04-01 10:52:20] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/greenpointers_rss/scrape_items/2026-03-31/greenpointers_rss_2026-03-31.json
+[2026-04-01 10:52:20] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/greenpointers_rss/scrape_items/2026-04-01/greenpointers_rss_2026-04-01.json
+[2026-04-01 10:52:20] Greenpointers scrape complete
