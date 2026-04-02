@@ -110,3 +110,8 @@
 [2026-04-02 12:00:31 UTC] Found 1 BKMAG items
 [2026-04-02 12:00:31 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/bkmag_rss/scrape_items/2026-04-01/bkmag_rss_2026-04-01.json
 [2026-04-02 12:00:31 UTC] BKMAG scrape complete
+[2026-04-02 12:34:48 UTC] Starting BKMAG scrape from 2026-04-01 00:01:00.373132 to 2026-04-02 23:59:59.373132
+[2026-04-02 12:34:48 UTC] Found 2 BKMAG items
+[2026-04-02 12:34:48 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/bkmag_rss/scrape_items/2026-04-01/bkmag_rss_2026-04-01.json
+[2026-04-02 12:34:48 UTC] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/bkmag_rss/scrape_items/2026-04-02/bkmag_rss_2026-04-02.json
+[2026-04-02 12:34:48 UTC] BKMAG scrape complete
