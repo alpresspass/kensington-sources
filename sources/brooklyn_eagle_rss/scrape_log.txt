@@ -195,3 +195,13 @@
 [2026-04-01 23:01:51] Found 9 Brooklyn Eagle items
 [2026-04-01 23:01:51] Saved 9 items to /Users/al/.openclaw/workspace/kensington-sources/sources/brooklyn_eagle_rss/scrape_items/2026-04-01/brooklyn_eagle_rss_2026-04-01.json
 [2026-04-01 23:01:51] Brooklyn Eagle scrape complete
+[2026-04-02 07:59:06] Starting Brooklyn Eagle scrape from 2026-04-01 00:01:00.850273 to 2026-04-02 23:59:59.850273
+[2026-04-02 07:59:07] Found 9 Brooklyn Eagle items
+[2026-04-02 07:59:07] Saved 8 items to /Users/al/.openclaw/workspace/kensington-sources/sources/brooklyn_eagle_rss/scrape_items/2026-04-01/brooklyn_eagle_rss_2026-04-01.json
+[2026-04-02 07:59:07] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/brooklyn_eagle_rss/scrape_items/2026-04-02/brooklyn_eagle_rss_2026-04-02.json
+[2026-04-02 07:59:07] Brooklyn Eagle scrape complete
+[2026-04-02 08:07:37] Starting Brooklyn Eagle scrape from 2026-04-01 00:01:00.398552 to 2026-04-02 23:59:59.398552
+[2026-04-02 08:07:45] Found 9 Brooklyn Eagle items
+[2026-04-02 08:07:45] Saved 8 items to /Users/al/.openclaw/workspace/kensington-sources/sources/brooklyn_eagle_rss/scrape_items/2026-04-01/brooklyn_eagle_rss_2026-04-01.json
+[2026-04-02 08:07:45] Saved 1 items to /Users/al/.openclaw/workspace/kensington-sources/sources/brooklyn_eagle_rss/scrape_items/2026-04-02/brooklyn_eagle_rss_2026-04-02.json
+[2026-04-02 08:07:45] Brooklyn Eagle scrape complete
