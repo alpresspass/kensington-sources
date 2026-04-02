@@ -84,3 +84,7 @@
 [2026-04-02 15:20:22 UTC] Found 0 The City items
 [2026-04-02 15:20:22 UTC] No items to save
 [2026-04-02 15:20:22 UTC] The City scrape complete
+[2026-04-02 16:47:21 UTC] Starting The City scrape from 2026-04-01 00:01:00.070618 to 2026-04-02 23:59:59.070618
+[2026-04-02 16:47:21 UTC] Found 5 The City items
+[2026-04-02 16:47:21 UTC] Saved 5 items to /Users/al/.openclaw/workspace/kensington-sources/sources/thecity_rss/scrape_items/2026-04-01/thecity_rss_2026-04-01.json
+[2026-04-02 16:47:21 UTC] The City scrape complete
