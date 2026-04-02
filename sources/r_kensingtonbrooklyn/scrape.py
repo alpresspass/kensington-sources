@@ -40,8 +40,9 @@ def get_reddit_posts(
     Fetch posts from a Reddit subreddit.
     
     Uses Reddit's JSON API endpoint which doesn't require authentication for reading.
+    Uses 'new' sorting to get recent posts, then filters by time range.
     """
-    base_url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=100"
+    base_url = f"https://www.reddit.com/r/{subreddit}/new.json?limit=100"
     
     all_posts = []
     after = None

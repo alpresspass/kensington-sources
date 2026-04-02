@@ -1,141 +1,150 @@
 #!/usr/bin/env python3
 """
-Scrape Greenpointers RSS feed for Brooklyn neighborhood news.
-Greenpointers covers local business, community events, and neighborhood news in Greenpoint/Brooklyn.
+Scrape GreenPointers RSS feed for Brooklyn news.
+
+GreenPointers covers Greenpoint, Williamsburg, and surrounding areas -
+news often relevant to Kensington residents.
 """
 
 import argparse
-from datetime import datetime, timedelta
 import json
-import os
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
-import sys
 from typing import Optional
+import requests
+from feedparser import parse
+from pydantic import BaseModel, Field
 
-try:
-    from feedparser import parse as parse_rss
-except ImportError:
-    print("Error: feedparser not installed. Run: uv add feedparser")
-    sys.exit(1)
 
-# Add project root to path for imports (sources/greenpointers_rss/ -> sources/ -> kensington-sources/)
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
-from models import RSSItem
+class RSSItem(BaseModel):
+    """An item from an RSS feed."""
+    title: str = Field(..., description="Article title/headline")
+    link: str = Field(..., description="URL to the article")
+    published: Optional[str] = Field(default=None, description="Published date string")
+    author: Optional[str] = Field(default=None, description="Author name if available")
+    summary: Optional[str] = Field(default=None, description="Article summary/description")
 
-SOURCE_NAME = "greenpointers_rss"
-BASE_URL = "https://greenpointers.com/feed/"
-OUTPUT_DIR = Path(__file__).parent / "scrape_items"
-LOG_FILE = Path(__file__).parent / "scrape_log.txt"
 
-def parse_args():
-    parser = argparse.ArgumentParser(description="Scrape Greenpointers RSS feed")
-    parser.add_argument("--days-ago", type=int, default=1,
-                       help="Number of days back to scrape (default: 1)")
-    parser.add_argument("--start-date", type=str, default=None,
-                       help="Start date in YYYY-MM-DD format")
-    parser.add_argument("--end-date", type=str, default=None,
-                       help="End date in YYYY-MM-DD format")
-    return parser.parse_args()
-
-def log_message(message: str):
-    """Append a timestamped message to the log file."""
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    with open(LOG_FILE, "a") as f:
-        f.write(f"[{timestamp}] {message}\n")
-
-def get_date_range(args):
-    """Calculate start and end datetimes for scraping."""
-    if args.start_date and args.end_date:
-        start = datetime.strptime(args.start_date, "%Y-%m-%d")
-        end = datetime.strptime(args.end_date, "%Y-%m-%d") + timedelta(days=1)
-    else:
-        # Default: last N full days (12:01 AM to 11:59 PM)
-        now = datetime.now()
-        end = now.replace(hour=23, minute=59, second=59)
-        start = now - timedelta(days=args.days_ago)
-        start = start.replace(hour=0, minute=1, second=0)
-    
-    return start, end
-
-def scrape_greenpointers(start: datetime, end: datetime) -> list[RSSItem]:
+def fetch_greenpointers_feed() -> tuple[Optional[str], list[dict]]:
     """
-    Scrape Greenpointers RSS feed for items within the date range.
-    Returns a list of RSSItem objects.
+    Fetch the GreenPointers RSS feed.
+    
+    Returns:
+        Tuple of (feed_title, entries_list)
     """
-    log_message(f"Starting Greenpointers scrape from {start} to {end}")
+    url = "https://greenpointers.com/feed/"
     
-    # Parse RSS feed
-    feed = parse_rss(BASE_URL)
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        feed_data = parse(response.content)
+        return feed_data.feed.get("title"), feed_data.entries
+    except Exception as e:
+        print(f"Error fetching feed: {e}")
+        return None, []
+
+
+def filter_entries_by_date(
+    entries: list[dict],
+    start_date: datetime,
+    end_date: datetime
+) -> list[RSSItem]:
+    """
+    Filter RSS entries to only include those within the specified date range.
     
-    items = []
-    for entry in feed.entries:
-        # Parse publication date
-        pub_date = None
-        if hasattr(entry, 'published_parsed') and entry.published_parsed:
-            pub_date = datetime(*entry.published_parsed[:6])
-        elif hasattr(entry, 'updated_parsed') and entry.updated_parsed:
-            pub_date = datetime(*entry.updated_parsed[:6])
+    Args:
+        entries: List of raw entry dictionaries from feedparser
+        start_date: Start of date range (inclusive)
+        end_date: End of date range (exclusive)
+    
+    Returns:
+        List of RSSItem objects filtered by date
+    """
+    filtered = []
+    
+    for entry in entries:
+        # Try to get published date from parsed values
+        pub_datetime = None
         
-        # Skip if no date or outside range
-        if not pub_date or pub_date < start or pub_date > end:
+        if hasattr(entry, 'published_parsed') and entry.published_parsed:
+            pub_datetime = datetime(*entry.published_parsed[:6])
+        elif hasattr(entry, 'updated_parsed') and entry.updated_parsed:
+            pub_datetime = datetime(*entry.updated_parsed[:6])
+        
+        # Skip entries without a valid date
+        if pub_datetime is None:
             continue
         
-        # Create RSSItem
-        item = RSSItem(
-            id=f"{SOURCE_NAME}_{entry.get('link', '').replace('/', '_')}",
-            title=entry.get('title', ''),
-            published_at=pub_date,
-            link=entry.get('link', ''),
-            summary=entry.get('description', ''),
-            author=entry.get('author', '')
-        )
-        items.append(item)
+        # Make pub_datetime timezone-aware (assume UTC for RSS feeds)
+        if pub_datetime.tzinfo is None:
+            pub_datetime = pub_datetime.replace(tzinfo=timezone.utc)
+        
+        # Check if within range
+        if start_date <= pub_datetime < end_date:
+            try:
+                item = RSSItem(
+                    title=entry.get("title", "Untitled"),
+                    link=entry.get("link", "#"),
+                    published=entry.get("published"),
+                    author=entry.get("author"),
+                    summary=entry.get("summary")
+                )
+                filtered.append(item)
+            except Exception as e:
+                print(f"Error parsing entry: {e}")
     
-    log_message(f"Found {len(items)} Greenpointers items")
-    return items
+    return filtered
 
-def save_items(items: list[RSSItem]):
-    """Save items to JSON files organized by date."""
-    if not items:
-        log_message("No items to save")
-        return
-    
-    # Group items by date
-    items_by_date = {}
-    for item in items:
-        date_str = item.published_at.strftime("%Y-%m-%d")
-        if date_str not in items_by_date:
-            items_by_date[date_str] = []
-        items_by_date[date_str].append(item)
-    
-    # Save each day's items
-    for date_str, day_items in sorted(items_by_date.items()):
-        output_path = OUTPUT_DIR / date_str
-        output_path.mkdir(parents=True, exist_ok=True)
-        
-        json_file = output_path / f"{SOURCE_NAME}_{date_str}.json"
-        
-        # Convert to serializable format - convert datetime to ISO string
-        def serialize_item(item):
-            d = item.model_dump()
-            if 'published_at' in d and isinstance(d['published_at'], datetime):
-                d['published_at'] = d['published_at'].isoformat()
-            return d
-        data = [serialize_item(item) for item in day_items]
-        
-        with open(json_file, 'w') as f:
-            json.dump(data, f, indent=2)
-        
-        log_message(f"Saved {len(day_items)} items to {json_file}")
 
 def main():
-    args = parse_args()
-    start, end = get_date_range(args)
+    """Main function to scrape GreenPointers RSS feed."""
+    parser = argparse.ArgumentParser(description='Scrape GreenPointers RSS feed')
+    parser.add_argument('--days-ago', type=int, default=1,
+                       help='Number of days ago to fetch (default: 1 for yesterday)')
+    args = parser.parse_args()
     
-    items = scrape_greenpointers(start, end)
-    save_items(items)
+    # Calculate the target date range
+    now = datetime.now(tz=timezone.utc)
+    target_date = now - timedelta(days=args.days_ago)
+    start_of_day = datetime(target_date.year, target_date.month, target_date.day, tzinfo=timezone.utc)
+    end_of_day = start_of_day + timedelta(days=1)
     
-    log_message("Greenpointers scrape complete")
+    print(f"Fetching GreenPointers feed for {target_date.date()}...")
+    print(f"  Start: {start_of_day}")
+    print(f"  End:   {end_of_day}")
+    
+    # Fetch the feed
+    feed_title, entries = fetch_greenpointers_feed()
+    
+    if not entries:
+        print("No entries found in feed.")
+        return
+    
+    print(f"Total entries in feed: {len(entries)}")
+    
+    # Filter by date range
+    filtered_entries = filter_entries_by_date(entries, start_of_day, end_of_day)
+    
+    if not filtered_entries:
+        print("No entries found for the specified date.")
+        return
+    
+    print(f"Entries for {target_date.date()}: {len(filtered_entries)}")
+    
+    # Create output directory
+    base_dir = Path(__file__).parent
+    scrape_items_dir = base_dir / "scrape_items" / target_date.strftime("%Y-%m-%d")
+    scrape_items_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Save to JSON file
+    output_file = scrape_items_dir / f"greenpointers_rss_{target_date.strftime('%Y-%m-%d')}.json"
+    items_data = [item.model_dump() for item in filtered_entries]
+    
+    with open(output_file, "w") as f:
+        json.dump(items_data, f, indent=2)
+    
+    print(f"Saved to {output_file}")
+
 
 if __name__ == "__main__":
     main()
