@@ -129,11 +129,15 @@ def main():
     while i < len(args):
         if args[i] == "--since" and i + 1 < len(args):
             since_str = args[i + 1]
-            since = datetime.fromisoformat(since_str.replace("Z", "+00:00"))
+            # Parse as date string (YYYY-MM-DD) and create UTC datetime at start of day
+            since = datetime.strptime(since_str, "%Y-%m-%d").replace(tzinfo=timezone.utc)
             i += 2
         elif args[i] == "--until" and i + 1 < len(args):
             until_str = args[i + 1]
-            until = datetime.fromisoformat(until_str.replace("Z", "+00:00"))
+            # Parse as date string (YYYY-MM-DD) and create UTC datetime at end of day
+            until = datetime.strptime(until_str, "%Y-%m-%d").replace(
+                hour=23, minute=59, second=59, tzinfo=timezone.utc
+            )
             i += 2
         else:
             i += 1
