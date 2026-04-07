@@ -1,1 +1,4 @@
 [2026-04-02 09:51 UTC] r/BedStuy source initialized - scrape_log.txt created
+[2026-04-04 01:39 UTC] Scraped r/BedStuy: 7 posts -> r_bedstuy_2026-04-04.json
+[2026-04-04 01:39 UTC] Scraped r/BedStuy: 7 posts -> r_bedstuy_2026-04-04.json
+[2026-04-07 05:45 UTC] Scraped r/BedStuy: 11 posts across 2 date(s)

@@ -155,19 +155,39 @@ def main():
     
     print(f"Found {len(posts)} posts")
     
-    # Create output directory for today's date
+    # Group posts by their creation date (not scrape time)
     base_dir = Path(__file__).parent
-    scrape_items_dir = base_dir / "scrape_items" / today_str
-    scrape_items_dir.mkdir(parents=True, exist_ok=True)
+    posts_by_date: dict[str, list[RedditPost]] = {}
     
-    # Save to JSON file
-    output_file = scrape_items_dir / f"r_bedstuy_{today_str}.json"
-    posts_data = [post.model_dump() for post in posts]
+    for post in posts:
+        # Convert Unix timestamp to date string
+        post_datetime = datetime.fromtimestamp(post.created_utc, tz=timezone.utc)
+        post_date_str = post_datetime.strftime("%Y-%m-%d")
+        
+        if post_date_str not in posts_by_date:
+            posts_by_date[post_date_str] = []
+        posts_by_date[post_date_str].append(post)
     
-    with open(output_file, "w") as f:
-        json.dump(posts_data, f, indent=2)
+    # Save each date's posts to its own folder
+    total_saved = 0
+    for date_str, date_posts in sorted(posts_by_date.items()):
+        scrape_items_dir = base_dir / "scrape_items" / date_str
+        scrape_items_dir.mkdir(parents=True, exist_ok=True)
+        
+        output_file = scrape_items_dir / f"r_bedstuy_{date_str}.json"
+        posts_data = [post.model_dump() for post in date_posts]
+        
+        with open(output_file, "w") as f:
+            json.dump(posts_data, f, indent=2)
+        
+        print(f"Saved {len(date_posts)} posts to {output_file}")
+        total_saved += len(date_posts)
     
-    print(f"Saved to {output_file}")
+    # Log the scrape to scrape_log.txt
+    log_file = base_dir / "scrape_log.txt"
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    with open(log_file, "a") as f:
+        f.write(f"[{timestamp}] Scraped r/BedStuy: {total_saved} posts across {len(posts_by_date)} date(s)\n")
 
 
 if __name__ == "__main__":
