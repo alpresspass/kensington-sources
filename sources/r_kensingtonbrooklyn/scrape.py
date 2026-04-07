@@ -127,8 +127,11 @@ def main():
     else:
         output_filename = f"r_kensingtonbrooklyn_{today}.json"
     
-    # Create scrape_items directory
-    scrape_items_dir = Path(f"scrape_items/{today}")
+    # Get repo root (parent of sources/)
+    repo_root = Path(__file__).parent.parent.parent
+    
+# Create scrape_items directory
+    scrape_items_dir = repo_root / f"scrape_items/{today}"
     scrape_items_dir.mkdir(parents=True, exist_ok=True)
     
     # Fetch posts
@@ -159,7 +162,7 @@ def main():
     
     # Update scrape_log.txt (in source folder)
     log_entry = f"{datetime.now(timezone.utc).isoformat()} - Scraped r/KensingtonBrooklyn: {len(filtered_posts)} posts -> {output_filename}\n"
-    with open("sources/r_kensingtonbrooklyn/scrape_log.txt", "a") as f:
+    with open(repo_root / "sources/r_kensingtonbrooklyn/scrape_log.txt", "a") as f:
         f.write(log_entry)
 
 
