@@ -157,9 +157,9 @@ def main():
         json.dump([post.model_dump() for post in filtered_posts], f, indent=2)
     print(f"Saved to {output_path}")
     
-    # Update scrape_log.txt
+    # Update scrape_log.txt (in source folder)
     log_entry = f"{datetime.now(timezone.utc).isoformat()} - Scraped r/KensingtonBrooklyn: {len(filtered_posts)} posts -> {output_filename}\n"
-    with open("scrape_log.txt", "a") as f:
+    with open("sources/r_kensingtonbrooklyn/scrape_log.txt", "a") as f:
         f.write(log_entry)
 
 
