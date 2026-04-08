@@ -2,6 +2,10 @@
 *.jsonl
 **/scraped_content/
 
+# scrape_items contains news content that SHOULD be tracked
+!scrape_items/
+!scrape_items/**/*
+
 # Python artifacts  
 __pycache__/
 *.py[cod]
